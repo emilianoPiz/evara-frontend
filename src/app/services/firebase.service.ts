@@ -1,13 +1,19 @@
-import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { Injectable, inject } from '@angular/core';
+import { Firestore } from '@angular/fire/firestore';
+import { collection, addDoc } from 'firebase/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirebaseService {
-  constructor(private db: AngularFireDatabase) { }
+  private firestore = inject(Firestore);
+  constructor() { }
 
   insertData(data: any) {
-    return this.db.list('/items').push(data);
+    // get a reference to the user-profile collection
+    const itemsCollection = collection(this.firestore, 'items');
+    
+    // get documents (data) from the collection using collectionData
+    return addDoc(itemsCollection, data);;
   }
 }
