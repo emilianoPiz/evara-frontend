@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FirebaseService } from '../../services/firebase.service';
+import { Firestore } from '@angular/fire/firestore';
+import { addDoc, collection } from 'firebase/firestore';
 
 @Component({
   selector: 'app-shop',
@@ -9,10 +11,11 @@ import { FirebaseService } from '../../services/firebase.service';
   styleUrl: './shop.component.scss'
 })
 export class ShopComponent {
+  private firestore = inject(Firestore);
   data = { message: 'Hello, Firebase!' };
-  constructor (private firebase: FirebaseService){}
   insertData() {
-    this.firebase.insertData(this.data).then(() => {
+    const itemsCollection = collection(this.firestore, 'items');
+    addDoc(itemsCollection, this.data).then(() => {
       console.log('Data inserted successfully');
     }).catch(error => {
       console.error('Error inserting data', error);
