@@ -1,1 +1,39 @@
-/* You can add global styles to this file, and also import other style files */
+
+/* Light mode variables */
+:root {
+    --background-color: #fbfdfb;
+    --text-color: #0b190b;
+    --primary-color:#4caf50;
+    --accent-color: #8bc34a;
+    --secondary-color: #6c7d6f;
+    --border-color: #dee6df;
+  }
+  
+  /* Dark mode variables */
+  .dark-mode {
+    --background-color: #061400;
+    --text-color: #fbfdfa;
+    --primary-color: #36a100;
+    --accent-color: #00745a;
+    --secondary-color: #adb5bd;
+    --border-color: #495057;
+  }
+  
+  /* Global styles */
+  body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  a {
+    color: var(--primary-color);
+  }
+  
+  a:hover {
+    color: var(--secondary-color);
+  }
+  
+  .border {
+    border-color: var(--border-color);
+  }
