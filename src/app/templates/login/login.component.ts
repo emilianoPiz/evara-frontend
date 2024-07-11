@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../services/firebase-related-services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -9,5 +10,16 @@ import { FormGroup, FormsModule } from '@angular/forms';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-  form?: FormGroup;
+  email: string = '';
+  password: string = '';
+
+  constructor(private authService: AuthService) {}
+  async login(event: Event) {
+    event.preventDefault();
+    try {
+      const user = await this.authService.login(this.email, this.password);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }

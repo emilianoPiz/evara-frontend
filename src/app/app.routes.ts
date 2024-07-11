@@ -16,6 +16,12 @@ export const ROUTES: Routes = [
       ),
   },
   {
+    path: 'login',
+
+    loadComponent: () =>
+      import('./templates/login/login.component').then((m) => m.LoginComponent),
+  },
+  {
     path: 'shop',
     loadComponent: () =>
       import('./website/shop/shop.component').then((m) => m.ShopComponent),
