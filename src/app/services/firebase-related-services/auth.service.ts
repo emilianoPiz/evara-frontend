@@ -1,26 +1,61 @@
-import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import firebase from 'firebase/app';
+import { Injectable, inject } from '@angular/core';
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  User,
+} from 'firebase/auth';
+import { Firestore } from '@angular/fire/firestore';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-  constructor(private afAuth: AngularFireAuth) {}
+  private firestore = inject(Firestore);
+  private auth = getAuth();
+  private userSubject = new BehaviorSubject<User | null>(null);
+  user$ = this.userSubject.asObservable();
 
-  async login(email: string, password: string) {
-    return await this.afAuth.signInWithEmailAndPassword(email, password);
+  constructor() {
+    onAuthStateChanged(this.auth, (user) => {
+      this.userSubject.next(user);
+    });
   }
 
-  async signup(email: string, password: string) {
-    return await this.afAuth.createUserWithEmailAndPassword(email, password);
+  async signUp(registerEmail: string, registerPassword: string) {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        this.auth,
+        registerEmail,
+        registerPassword
+      );
+      this.userSubject.next(userCredential.user);
+      return userCredential.user;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
+
+  async login(LoginEmail: string, LoginPassword: string) {
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        this.auth,
+        LoginEmail,
+        LoginPassword
+      );
+      this.userSubject.next(userCredential.user);
+      return userCredential.user;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
   }
 
   async logout() {
-    return await this.afAuth.signOut();
-  }
-
-  getCurrentUser() {
-    return this.afAuth.user;
+    await this.auth.signOut();
+    this.userSubject.next(null);
   }
 }

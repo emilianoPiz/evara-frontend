@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { AuthGuard, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/login']);
 
 export const ROUTES: Routes = [
   {
@@ -6,6 +8,20 @@ export const ROUTES: Routes = [
     pathMatch: 'full',
     loadComponent: () =>
       import('./website/hero/hero.component').then((m) => m.HeroComponent),
+  },
+  {
+    path: 'signup',
+
+    loadComponent: () =>
+      import('./templates/signup/signup.component').then(
+        (m) => m.SignupComponent
+      ),
+  },
+  {
+    path: 'login',
+
+    loadComponent: () =>
+      import('./templates/login/login.component').then((m) => m.LoginComponent),
   },
   {
     path: 'shop',
@@ -41,6 +57,7 @@ export const ROUTES: Routes = [
     path: 'admin',
     loadComponent: () =>
       import('./admin/admin.component').then((m) => m.AdminComponent),
+
     children: [
       {
         path: '',
@@ -48,6 +65,7 @@ export const ROUTES: Routes = [
           import('./admin/back-office/back-office.component').then(
             (m) => m.BackOfficeComponent
           ),
+        canActivate: [AuthGuard],
       },
     ],
   },
