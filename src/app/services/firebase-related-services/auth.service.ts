@@ -1,26 +1,27 @@
-import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import firebase from 'firebase/app';
+import { Injectable, inject } from '@angular/core';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { Firestore } from '@angular/fire/firestore';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-  constructor(private afAuth: AngularFireAuth) {}
-
-  async login(email: string, password: string) {
-    return await this.afAuth.signInWithEmailAndPassword(email, password);
-  }
-
-  async signup(email: string, password: string) {
-    return await this.afAuth.createUserWithEmailAndPassword(email, password);
-  }
-
-  async logout() {
-    return await this.afAuth.signOut();
-  }
-
-  getCurrentUser() {
-    return this.afAuth.user;
+  private firestore = inject(Firestore);
+  auth = getAuth();
+  email: string = '';
+  password: string = '';
+  constructor() {}
+  async signUp(RegisterEmail: string, RegisterPassword: string) {
+    this.email = RegisterEmail;
+    this.password = RegisterPassword;
+    createUserWithEmailAndPassword(this.auth, this.email, this.password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        return user;
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
   }
 }

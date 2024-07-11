@@ -8,6 +8,14 @@ export const ROUTES: Routes = [
       import('./website/hero/hero.component').then((m) => m.HeroComponent),
   },
   {
+    path: 'signup',
+
+    loadComponent: () =>
+      import('./templates/signup/signup.component').then(
+        (m) => m.SignupComponent
+      ),
+  },
+  {
     path: 'shop',
     loadComponent: () =>
       import('./website/shop/shop.component').then((m) => m.ShopComponent),
