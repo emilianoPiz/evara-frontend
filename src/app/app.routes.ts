@@ -37,4 +37,18 @@ export const ROUTES: Routes = [
       },
     ],
   },
+  {
+    path: 'admin',
+    loadComponent: () =>
+      import('./admin/admin.component').then((m) => m.AdminComponent),
+    children: [
+      {
+        path: '',
+        loadComponent: () =>
+          import('./admin/back-office/back-office.component').then(
+            (m) => m.BackOfficeComponent
+          ),
+      },
+    ],
+  },
 ];
