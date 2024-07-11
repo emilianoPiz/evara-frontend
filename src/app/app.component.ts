@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, Router, NavigationEnd  } from '@angular/router';
 import { ShopComponent } from "./website/shop/shop.component";
 import { HeroComponent } from './website/hero/hero.component';
 @Component({
@@ -11,4 +11,17 @@ import { HeroComponent } from './website/hero/hero.component';
 })
 export class AppComponent {
   title = 'evara-frontend';
+  showHero: boolean = true;
+  constructor(private router: Router)
+  {
+
+  }
+  ngOnInit() {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.showHero = false;
+      }
+    });
+  }
+
 }
