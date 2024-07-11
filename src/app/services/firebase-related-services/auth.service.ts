@@ -3,42 +3,59 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  onAuthStateChanged,
+  User,
 } from 'firebase/auth';
 import { Firestore } from '@angular/fire/firestore';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   private firestore = inject(Firestore);
-  auth = getAuth();
-  email: string = '';
-  password: string = '';
-  constructor() {}
-  async signUp(registerEmail: string, registerPassword: string) {
-    this.email = registerEmail;
-    this.password = registerPassword;
-    createUserWithEmailAndPassword(this.auth, this.email, this.password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        return user;
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-      });
+  private auth = getAuth();
+  private userSubject = new BehaviorSubject<User | null>(null);
+  user$ = this.userSubject.asObservable();
+
+  constructor() {
+    onAuthStateChanged(this.auth, (user) => {
+      this.userSubject.next(user);
+    });
   }
+
+  async signUp(registerEmail: string, registerPassword: string) {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        this.auth,
+        registerEmail,
+        registerPassword
+      );
+      this.userSubject.next(userCredential.user);
+      return userCredential.user;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
+
   async login(LoginEmail: string, LoginPassword: string) {
-    this.email = LoginEmail;
-    this.password = LoginPassword;
-    signInWithEmailAndPassword(this.auth, this.email, this.password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        console.log(user);
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-      });
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        this.auth,
+        LoginEmail,
+        LoginPassword
+      );
+      this.userSubject.next(userCredential.user);
+      return userCredential.user;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
+
+  async logout() {
+    await this.auth.signOut();
+    this.userSubject.next(null);
   }
 }

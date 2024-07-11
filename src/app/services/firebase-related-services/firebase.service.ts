@@ -4,12 +4,12 @@ import { collection, addDoc } from 'firebase/firestore';
 import { doc, setDoc } from 'firebase/firestore';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FirebaseService {
   private firestore = inject(Firestore);
 
-  constructor() { }
+  constructor() {}
 
   insertProduct(product: any) {
     // Generate a custom product ID
@@ -17,5 +17,4 @@ export class FirebaseService {
     const productDoc = doc(this.firestore, `products/${productId}`);
     return setDoc(productDoc, product);
   }
-  
 }
