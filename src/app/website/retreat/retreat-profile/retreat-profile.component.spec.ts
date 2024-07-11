@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TemplatesComponent } from './templates.component';
+import { RetreatProfileComponent } from './retreat-profile.component';
 
-describe('TemplatesComponent', () => {
-  let component: TemplatesComponent;
-  let fixture: ComponentFixture<TemplatesComponent>;
+describe('RetreatProfileComponent', () => {
+  let component: RetreatProfileComponent;
+  let fixture: ComponentFixture<RetreatProfileComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TemplatesComponent]
+      imports: [RetreatProfileComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(TemplatesComponent);
+    fixture = TestBed.createComponent(RetreatProfileComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

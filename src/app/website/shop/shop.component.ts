@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { FirebaseService } from '../../services/firebase.service';
+import { FirebaseService } from '../../services/firebase-related-services/firebase.service';
 import { Firestore } from '@angular/fire/firestore';
 import { addDoc, collection } from 'firebase/firestore';
 

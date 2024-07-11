@@ -3,7 +3,7 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
-    path: '',
+    path: '', pathMatch: 'full',
     loadComponent: () => import('./website/hero/hero.component').then(m => m.HeroComponent)
   },
   {
