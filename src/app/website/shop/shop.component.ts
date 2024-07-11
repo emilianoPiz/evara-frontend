@@ -2,11 +2,12 @@ import { Component, inject } from '@angular/core';
 import { FirebaseService } from '../../services/firebase-related-services/firebase.service';
 import { Firestore } from '@angular/fire/firestore';
 import { addDoc, collection } from 'firebase/firestore';
+import { ShopHomeComponent } from './shop-home/shop-home.component';
 
 @Component({
   selector: 'app-shop',
   standalone: true,
-  imports: [],
+  imports: [ShopHomeComponent],
   templateUrl: './shop.component.html',
   styleUrl: './shop.component.scss'
 })
