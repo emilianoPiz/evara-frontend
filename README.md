@@ -28,9 +28,16 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Lint and general formatting
 
-This is how variables are declared and formatting : 
+This is how variables are declared and formatting :
+
 - CAPS_LOCK indicates a constant variable
-- camelCase indicates a variable that contains a class(services, modules, etc) 
-- minusc_lock indicates a variable that can change or  objects properties
+- camelCase indicates a variable that contains a class(services, modules, etc)
+- minusc_lock indicates a variable that can change or objects properties
 - prettier: esbenp.prettier-vscode. 10.4.0
 - ClassName this is how a class is initiated
+
+## environments
+
+the first thing you should do is creating a src/environments folder and insert there your firebase config in an ENVIRONMENT const
+
+#
