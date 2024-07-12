@@ -12,7 +12,6 @@ export class FirebaseService {
   constructor() {}
 
   insertProduct(product: any) {
-    // Generate a custom product ID
     const productId = product.id;
     const productDoc = doc(this.firestore, `products/${productId}`);
     return setDoc(productDoc, product);

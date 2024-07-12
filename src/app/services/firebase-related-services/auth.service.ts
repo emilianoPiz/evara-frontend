@@ -4,10 +4,12 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
-  User,
+  User as FirebaseUser,
 } from 'firebase/auth';
-import { Firestore } from '@angular/fire/firestore';
+import { Firestore, collection, doc, setDoc } from '@angular/fire/firestore';
 import { BehaviorSubject } from 'rxjs';
+import { User } from '../../models/user.model';
+import { Timestamp } from 'firebase/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +17,7 @@ import { BehaviorSubject } from 'rxjs';
 export class AuthService {
   private firestore = inject(Firestore);
   private auth = getAuth();
-  private userSubject = new BehaviorSubject<User | null>(null);
+  private userSubject = new BehaviorSubject<FirebaseUser | null>(null);
   user$ = this.userSubject.asObservable();
 
   constructor() {
@@ -24,15 +26,29 @@ export class AuthService {
     });
   }
 
-  async signUp(registerEmail: string, registerPassword: string) {
+  async signUp(registerEmail: string, registerPassword: string, role: string) {
     try {
       const userCredential = await createUserWithEmailAndPassword(
         this.auth,
         registerEmail,
         registerPassword
       );
-      this.userSubject.next(userCredential.user);
-      return userCredential.user;
+      const user = userCredential.user;
+      const userData: User = {
+        id: user.uid,
+        name: user.email || '',
+        email: user.email || '',
+        role: role,
+        created_at: Timestamp.fromDate(new Date()),
+        updated_at: Timestamp.fromDate(new Date()),
+      };
+
+      const usersCollection = collection(this.firestore, 'users');
+      const userDoc = doc(usersCollection, user.uid);
+      await setDoc(userDoc, userData);
+
+      this.userSubject.next(user);
+      return user;
     } catch (error) {
       console.error(error);
       throw error;

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/firebase-related-services/auth.service';
-
 @Component({
   selector: 'app-login',
   standalone: true,
