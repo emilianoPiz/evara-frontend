@@ -23,4 +23,5 @@ export interface Product {
     | 'preorder';
   created_at: Timestamp;
   updated_at: Timestamp;
+  path_to_imagae: string;
 }

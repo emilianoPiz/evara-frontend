@@ -29,7 +29,7 @@ export const ROUTES: Routes = [
       import('./website/shop/shop.component').then((m) => m.ShopComponent),
     children: [
       {
-        path: 'home',
+        path: '',
         loadComponent: () =>
           import('./website/shop/shop-home/shop-home.component').then(
             (m) => m.ShopHomeComponent
@@ -45,7 +45,7 @@ export const ROUTES: Routes = [
       ),
     children: [
       {
-        path: 'home',
+        path: '',
         loadComponent: () =>
           import('./website/retreat/retreat-home/retreat-home.component').then(
             (m) => m.RetreatHomeComponent

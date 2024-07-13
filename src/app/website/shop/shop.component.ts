@@ -5,11 +5,10 @@ import { RouterModule } from '@angular/router';
   selector: 'app-shop',
   standalone: true,
   imports: [RouterModule],
-  template: `<div class="main container">
-    <p><a routerLink="/shop/home">to home</a></p>
+  template: `<div class="main-shop-container">
     <router-outlet></router-outlet>
   </div> `,
-  styleUrl: './shop.component.scss',
+  styles: ``,
 })
 export class ShopComponent {
   constructor() {}
