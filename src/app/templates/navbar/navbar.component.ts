@@ -41,7 +41,7 @@ export class NavbarComponent implements OnInit {
     if (url.includes('/shop')) {
       this.links = [
         { path: '/shop', label: 'Shop' },
-        { path: '/cart', label: 'Cart' },
+        { path: '/shop/cart', label: 'Cart' },
         { path: '/profile', label: 'Profile' },
       ];
     } else if (url.includes('/retreat')) {

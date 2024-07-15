@@ -34,6 +34,16 @@ export const ROUTES: Routes = [
           import('./website/shop/shop-home/shop-home.component').then(
             (m) => m.ShopHomeComponent
           ),
+
+        children: [
+          {
+            path: 'cart',
+            loadComponent: () =>
+              import('./website/shop/shop-cart/shop-cart.component').then(
+                (m) => m.CartComponent
+              ),
+          },
+        ],
       },
     ],
   },

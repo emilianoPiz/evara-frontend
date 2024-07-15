@@ -1,1 +1,20 @@
-<p>shop-cart works!</p>
+<div class="cart">
+  <h2>Your Cart</h2>
+  <div *ngIf="cartItems.length === 0">
+    <p>Your cart is empty.</p>
+  </div>
+  <div *ngIf="cartItems.length > 0">
+    <div *ngFor="let item of cartItems" class="cart-item">
+      <div class="item-details">
+        <p>{{ item.product_name }}</p>
+        <p>Quantity: {{ item.quantity }}</p>
+        <p>Price: {{ item.price | currency }}</p>
+        <p>Total: {{ item.total | currency }}</p>
+      </div>
+    </div>
+    <div class="cart-total">
+      <p>Total: {{ cartTotal | currency }}</p>
+    </div>
+    <button (click)="clearCart()">Clear Cart</button>
+  </div>
+</div>
