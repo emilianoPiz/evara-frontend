@@ -1,2 +1,4 @@
 <app-navbar></app-navbar>
-<p>shop-home works!</p>
+@for( product of testProducts; track product.id){
+<app-product-card [product]="product"></app-product-card>
+}

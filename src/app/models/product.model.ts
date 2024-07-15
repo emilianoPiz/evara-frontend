@@ -17,11 +17,11 @@ export interface Product {
   status:
     | 'active'
     | 'inactive'
-    | 'avalailable'
+    | 'available'
     | 'unavailable'
     | 'coming soon'
     | 'preorder';
   created_at: Timestamp;
   updated_at: Timestamp;
-  path_to_imagae: string;
+  path_to_image: string;
 }
