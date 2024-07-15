@@ -2,6 +2,7 @@ import { Timestamp } from 'firebase/firestore';
 
 export interface Product {
   id?: string;
+  provider: string;
   name: string;
   colors: string[];
   category: string;
@@ -14,6 +15,7 @@ export interface Product {
   description: string;
   promotion: string;
   price: number;
+  tag: string;
   status:
     | 'active'
     | 'inactive'
@@ -24,4 +26,6 @@ export interface Product {
   created_at: Timestamp;
   updated_at: Timestamp;
   path_to_image: string;
+  warehouse: string;
+  border_price: number;
 }

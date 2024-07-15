@@ -8,4 +8,16 @@ import { RouterModule } from '@angular/router';
   template: `<router-outlet></router-outlet>`,
   styles: ``,
 })
-export class AdminComponent {}
+export class AdminComponent {
+  // insertData(product: Product) {
+  //   const itemToAdd = product;
+  //   const itemsCollection = collection(this.firestore, 'products');
+  //   addDoc(itemsCollection, itemToAdd)
+  //     .then(() => {
+  //       console.log('Data inserted successfully');
+  //     })
+  //     .catch((error) => {
+  //       console.error('Error inserting data', error);
+  //     });
+  // }
+}
