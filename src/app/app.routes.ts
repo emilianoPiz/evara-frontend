@@ -43,6 +43,13 @@ export const ROUTES: Routes = [
                 (m) => m.CartComponent
               ),
           },
+          {
+            path: 'profile',
+            loadComponent: () =>
+              import('./website/shop/shop-profile/shop-profile.component').then(
+                (m) => m.ProfileComponent
+              ),
+          },
         ],
       },
     ],

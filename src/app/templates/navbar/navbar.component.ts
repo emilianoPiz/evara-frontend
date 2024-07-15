@@ -42,7 +42,7 @@ export class NavbarComponent implements OnInit {
       this.links = [
         { path: '/shop', label: 'Shop' },
         { path: '/shop/cart', label: 'Cart' },
-        { path: '/profile', label: 'Profile' },
+        { path: '/shop/profile', label: 'Profile' },
       ];
     } else if (url.includes('/retreat')) {
       this.links = [

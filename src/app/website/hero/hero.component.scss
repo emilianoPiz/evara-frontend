@@ -7,13 +7,17 @@
   height: 100vh;
   overflow: hidden;
   perspective: 1000px;
+  background: transparent;
+  background-image: url('C:/dev/evara/evara-frontend/src/assets/hero-background.webp');
 
+background-size: cover;
   @include respond-to('medium') {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr;
   }
   
 }
+
 
 .hero-section {
   display: flex;
@@ -23,6 +27,7 @@
   overflow: hidden;
   // transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
   backface-visibility: hidden;
+  filter: blur();
 
   &:hover {
     // transform: rotateY(10deg) scale(1.05);
@@ -32,9 +37,9 @@
   .content {
     text-align: center;
     padding: 20px;
-    background: rgba(255, 255, 255, 0.8);
+    background:rgba(#ffff, 0.8);
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
     // transition: background 0.3s, box-shadow 0.3s, transform 0.3s;
 
     h1 {

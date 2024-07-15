@@ -1,1 +1,28 @@
-<p>shop-profile works!</p>
+<div class="profile-container">
+  <h1>Profile</h1>
+  <mat-card>
+    <mat-card-content>
+      <p><strong>Name:</strong> {{ name }}</p>
+      <p><strong>Surname:</strong> {{ surname }}</p>
+      <p><strong>Date of Birth:</strong> {{ dateOfBirth | date }}</p>
+      <p><strong>Email:</strong> {{ email }}</p>
+      <p><strong>Password:</strong> {{ password }}</p>
+      <button mat-raised-button color="primary" (click)="changePassword()">
+        Change Password
+      </button>
+    </mat-card-content>
+  </mat-card>
+
+  <h2>Wallet</h2>
+  <mat-card>
+    <mat-card-content>
+      <p><strong>Balance:</strong> ${{ wallet.balance }}</p>
+      <p><strong>Payment Methods:</strong></p>
+      <ul>
+        <li *ngFor="let method of wallet.paymentMethods">
+          {{ method.type }} ending in {{ method.lastFour }}
+        </li>
+      </ul>
+    </mat-card-content>
+  </mat-card>
+</div>
