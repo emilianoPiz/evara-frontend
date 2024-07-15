@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -7,8 +7,9 @@ import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { NgFor } from '@angular/common';
+
 @Component({
   selector: 'app-navbar',
   standalone: true,
@@ -25,27 +26,30 @@ import { NgFor } from '@angular/common';
     MatInputModule,
   ],
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.scss',
+  styleUrls: ['./navbar.component.scss'],
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
   links: any = [];
 
-  constructor(private route: ActivatedRoute) {
-    this.route.url.subscribe((url) => {
-      if (url.toString().includes('shop')) {
-        this.links = [
-          { path: '/shop', label: 'Shop' },
-          { path: '/cart', label: 'Cart' },
-          { path: '/profile', label: 'Profile' },
-        ];
-      }
-      if (url.toString().includes('retreat')) {
-        this.links = [
-          { path: '/retreat', label: 'Retreat' },
-          { path: '/events', label: 'Events' },
-          { path: '/appointment', label: 'Appointment' },
-        ];
-      }
-    });
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    this.updateLinks(this.router.url);
+  }
+
+  private updateLinks(url: string): void {
+    if (url.includes('/shop')) {
+      this.links = [
+        { path: '/shop', label: 'Shop' },
+        { path: '/cart', label: 'Cart' },
+        { path: '/profile', label: 'Profile' },
+      ];
+    } else if (url.includes('/retreat')) {
+      this.links = [
+        { path: '/retreat', label: 'Retreat' },
+        { path: '/events', label: 'Events' },
+        { path: '/appointment', label: 'Appointment' },
+      ];
+    }
   }
 }
