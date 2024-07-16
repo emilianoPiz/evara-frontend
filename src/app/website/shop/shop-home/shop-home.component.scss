@@ -1,5 +1,54 @@
-.container-products{
- max-width: 800px;
- max-height: 1200px;
- display: flex; 
-}
+.container-products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 16px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  app-product-card {
+    flex: 1 1 calc(25% - 32px); /* Responsive width: 25% of the container with 16px margin */
+    margin: 16px;
+    box-sizing: border-box;
+  }
+  
+  /* Adjustments for different screen sizes */
+  @media (max-width: 1200px) {
+    app-product-card {
+      flex: 1 1 calc(33.333% - 32px); /* 3 items per row */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    app-product-card {
+      flex: 1 1 calc(50% - 32px); /* 2 items per row */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    app-product-card {
+      flex: 1 1 calc(100% - 32px); /* 1 item per row */
+    }
+  }
+  
+  /* Styling for sidenav links */
+  .sidenav-link {
+    display: block;
+    padding: 12px 16px;
+    text-decoration: none;
+    color:var(--text-color);
+    font-size: 16px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .sidenav-link:hover {
+    background-color:var(--background-color);
+    color:var(--primary-color)
+  }
+  
+  .sidenav-link.active {
+    background-color: var(--background-color);
+    color: var(--primary-color);
+  }
+  

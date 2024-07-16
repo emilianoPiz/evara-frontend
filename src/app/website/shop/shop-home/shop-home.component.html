@@ -1,9 +1,14 @@
-<!-- shop-home.component.html -->
 <mat-sidenav-container>
   <mat-sidenav #sidenav mode="over" fxHide.gt-sm>
     <mat-nav-list>
       <ng-container *ngFor="let link of navbarComponent.links">
-        <a mat-list-item [routerLink]="link.path" (click)="sidenav.close()">
+        <a
+          mat-list-item
+          [routerLink]="link.path"
+          (click)="sidenav.close()"
+          class="sidenav-link"
+          routerLinkActive="active"
+        >
           {{ link.label }}
         </a>
       </ng-container>

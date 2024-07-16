@@ -32,11 +32,6 @@ export class ProfileComponent implements OnInit {
         if (userData) {
           this.name = userData.email;
           this.email = userData.email;
-          // this.birth_date = userData.uid;
-
-          // if (userData.wallet) {
-          //   this.wallet = userData.wallet;
-          // }
         }
       }
     });

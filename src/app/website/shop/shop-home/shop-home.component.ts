@@ -44,6 +44,7 @@ export class ShopHomeComponent implements OnInit {
     this.getAllProducts().subscribe((products) => {
       this.data = products;
     });
+    console.log('iinitialize shop-home');
   }
 
   getAllProducts(): Observable<Product[]> {

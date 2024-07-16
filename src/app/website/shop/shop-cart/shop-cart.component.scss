@@ -1,0 +1,96 @@
+// Import Angular Material theming utilities
+@use '@angular/material' as mat;
+
+.cart {
+  background-color: var(--background-color);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  }
+
+  h2 {
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
+
+  .cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border-color);
+    animation: fadeIn 0.5s ease;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    .item-details {
+      flex-grow: 1;
+
+      p {
+        margin: 0.25rem 0;
+        font-size: 1rem;
+
+        &:first-child {
+          font-weight: bold;
+          color: var(--text-color);
+        }
+
+        &:nth-child(2) {
+          color: var(--secondary-color);
+        }
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+
+  .cart-total {
+    text-align: right;
+    padding: 1rem 0;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--accent-color);
+    border-top: 2px solid var(--border-color);
+    margin-top: 1rem;
+  }
+
+  button {
+    display: block;
+    width: 100%;
+    padding: 0.75rem;
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    border: none;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+
+    &:hover {
+      background-color: var(--accent-color);
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(1px);
+    }
+  }
+}
