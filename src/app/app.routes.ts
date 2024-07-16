@@ -49,6 +49,7 @@ export const ROUTES: Routes = [
               import('./website/shop/shop-profile/shop-profile.component').then(
                 (m) => m.ProfileComponent
               ),
+            canActivate: [AuthGuard],
           },
         ],
       },

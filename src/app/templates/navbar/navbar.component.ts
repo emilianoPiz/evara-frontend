@@ -43,12 +43,15 @@ export class NavbarComponent implements OnInit {
         { path: '/shop', label: 'Shop' },
         { path: '/shop/cart', label: 'Cart' },
         { path: '/shop/profile', label: 'Profile' },
+        { path: '/login', label: 'Login' },
+        { path: '/signup', label: 'Join Us!' },
       ];
     } else if (url.includes('/retreat')) {
       this.links = [
-        { path: '/retreat', label: 'Retreat' },
-        { path: '/events', label: 'Events' },
-        { path: '/appointment', label: 'Appointment' },
+        { path: '/retreat', label: 'Home' },
+        { path: '/events', label: 'Retreats' },
+        { path: '/book-us', label: 'Book with us!' },
+        { path: '/testimonials', label: 'Testimonials' },
       ];
     }
   }

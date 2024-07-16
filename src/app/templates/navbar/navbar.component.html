@@ -1,25 +1,7 @@
 <mat-toolbar color="primary">
-  <!-- <button mat-icon-button (click)="sidenav.toggle()">
-    <mat-icon>menu</mat-icon>
-  </button> -->
-  <span>MyApp</span>
-  <span class="spacer"></span>
   <ng-container *ngFor="let link of links">
     <button mat-button [routerLink]="link.path">
       {{ link.label }}
     </button>
   </ng-container>
 </mat-toolbar>
-
-<mat-sidenav-container class="example-container">
-  <mat-sidenav #sidenav mode="side" opened>
-    <mat-nav-list>
-      <ng-container *ngFor="let link of links">
-        <a mat-list-item [routerLink]="link.path">{{ link.label }}</a>
-      </ng-container>
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <!-- Main content goes here -->
-  </mat-sidenav-content>
-</mat-sidenav-container>
