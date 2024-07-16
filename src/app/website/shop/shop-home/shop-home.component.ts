@@ -8,12 +8,22 @@ import { CartService } from '../../../services/cart.service';
 import { CommonModule } from '@angular/common';
 import { CartComponent } from '../shop-cart/shop-cart.component';
 import { RouterModule } from '@angular/router';
+import {
+  MatSidenav,
+  MatSidenavContainer,
+  MatSidenavContent,
+} from '@angular/material/sidenav';
+import { MatNavList } from '@angular/material/list';
 
 @Component({
   selector: 'app-shop-home',
   standalone: true,
   imports: [
     CommonModule,
+    MatSidenavContainer,
+    MatSidenavContent,
+    MatSidenav,
+    MatNavList,
     NavbarComponent,
     ProductCardComponent,
     CartComponent,
@@ -27,6 +37,9 @@ export class ShopHomeComponent implements OnInit {
   private cartService = inject(CartService);
   data: Product[] = [];
 
+  trackById(index: number, item: any): number {
+    return item.id;
+  }
   ngOnInit() {
     this.getAllProducts().subscribe((products) => {
       this.data = products;

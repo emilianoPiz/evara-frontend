@@ -1,7 +1,26 @@
-<mat-toolbar color="primary">
-  <ng-container *ngFor="let link of links">
-    <button mat-button [routerLink]="link.path">
-      {{ link.label }}
+<!-- navbar.component.html -->
+<mat-toolbar color="primary" class="toolbar">
+  <div class="logo">
+    <img
+      style="width: 100px; height: 100px"
+      src="https://firebasestorage.googleapis.com/v0/b/evara-cee16.appspot.com/o/shop-assets%2Fevara_logo_black.jpg?alt=media&token=4ec953f0-eb74-49c8-b893-7326cbed27fa"
+      alt="logo"
+    />
+  </div>
+
+  <!-- Desktop Navigation Links -->
+  <div class="nav-links" fxFlex fxLayoutAlign="end center" fxHide.lt-md>
+    <ng-container *ngFor="let link of links">
+      <button mat-button [routerLink]="link.path">
+        {{ link.label }}
+      </button>
+    </ng-container>
+  </div>
+
+  <!-- Mobile Menu Icon -->
+  <div fxHide.gt-sm>
+    <button mat-icon-button (click)="menuToggle.emit()">
+      <mat-icon>menu</mat-icon>
     </button>
-  </ng-container>
+  </div>
 </mat-toolbar>
