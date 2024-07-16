@@ -1,8 +1,11 @@
 <app-navbar></app-navbar>
+<img src="assets\evara_logo_black.jpg" alt="" />
 <router-outlet></router-outlet>
-@for( product of data; track product.id){
-<app-product-card
-  [product]="product"
-  (addToCart)="addToCart($event)"
-></app-product-card>
-}
+<div class="container-products">
+  @for( product of data; track product.id){
+  <app-product-card
+    [product]="product"
+    (addToCart)="addToCart($event)"
+  ></app-product-card>
+  }
+</div>
