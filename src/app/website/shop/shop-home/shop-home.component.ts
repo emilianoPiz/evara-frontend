@@ -38,15 +38,20 @@ export class ShopHomeComponent implements OnInit {
   private firestore = inject(Firestore);
   private cartService = inject(CartService);
   data: Product[] = [];
+  isLoading = true;
 
   trackById(index: number, item: any): number {
     return item.id;
   }
+
   ngOnInit() {
     this.getAllProducts().subscribe((products) => {
       this.data = products;
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 1500); // 1.5 seconds delay
     });
-    console.log('iinitialize shop-home');
+    console.log('initialize shop-home');
   }
 
   getAllProducts(): Observable<Product[]> {

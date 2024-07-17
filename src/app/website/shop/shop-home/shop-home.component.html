@@ -18,13 +18,17 @@
     <app-navbar #navbarComponent (menuToggle)="sidenav.toggle()"></app-navbar>
     <router-outlet></router-outlet>
     <div class="container-products">
-      <ng-container *ngFor="let product of data; trackBy: trackById">
-        @if(!product){<app-evara-spinner></app-evara-spinner>}
-        <app-product-card
-          [product]="product"
-          (addToCart)="addToCart($event)"
-        ></app-product-card>
+      <div *ngIf="isLoading" class="center-spinner">
+        <app-evara-spinner></app-evara-spinner>
+      </div>
+
+      <ng-container *ngIf="!isLoading">
+        <ng-container *ngFor="let product of data; trackBy: trackById">
+          <app-product-card
+            [product]="product"
+            (addToCart)="addToCart($event)"
+          ></app-product-card>
+        </ng-container>
       </ng-container>
-    </div>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+    </div> </mat-sidenav-content
+></mat-sidenav-container>
