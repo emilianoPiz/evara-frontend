@@ -1,23 +1,21 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 
 @Component({
-  selector: 'app-back-office',
+  selector: 'app-admin',
   standalone: true,
-  imports: [RouterModule],
-  template: `<router-outlet></router-outlet>`,
-  styles: ``,
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterModule,
+    AdminPanelComponent,
+    AdminDashboardComponent,
+  ],
+  templateUrl: './admin.component.html',
+  styleUrls: ['./admin.component.scss'],
 })
-export class AdminComponent {
-  // insertData(product: Product) {
-  //   const itemToAdd = product;
-  //   const itemsCollection = collection(this.firestore, 'products');
-  //   addDoc(itemsCollection, itemToAdd)
-  //     .then(() => {
-  //       console.log('Data inserted successfully');
-  //     })
-  //     .catch((error) => {
-  //       console.error('Error inserting data', error);
-  //     });
-  // }
-}
+export class AdminComponent {}
