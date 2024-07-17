@@ -1,3 +1,22 @@
-<h1>ADMIN HOME</h1>
-<app-admin-dashboard></app-admin-dashboard>
-<app-admin-panel></app-admin-panel>
+<h1>EVARA ADMIN</h1>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="over" fxHide.gt-sm>
+    <mat-nav-list>
+      <ng-container *ngFor="let link of navbarComponent.links">
+        <a
+          mat-list-item
+          [routerLink]="link.path"
+          (click)="sidenav.close()"
+          class="sidenav-link"
+          routerLinkActive="active"
+        >
+          {{ link.label }}
+        </a>
+      </ng-container>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-navbar #navbarComponent (menuToggle)="sidenav.toggle()"></app-navbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

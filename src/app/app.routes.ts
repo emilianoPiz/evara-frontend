@@ -75,15 +75,41 @@ export const ROUTES: Routes = [
     path: 'admin',
     loadComponent: () =>
       import('./admin/admin.component').then((m) => m.AdminComponent),
-
+    canActivate: [AuthGuard],
     children: [
       {
         path: '',
         loadComponent: () =>
-          import('./admin/back-office/back-office.component').then(
-            (m) => m.BackOfficeComponent
+          import('./admin/admin-dashboard/admin-dashboard.component').then(
+            (m) => m.AdminDashboardComponent
           ),
         canActivate: [AuthGuard],
+      },
+      {
+        path: 'panel',
+        loadComponent: () =>
+          import('./admin/admin-panel/admin-panel.component').then(
+            (m) => m.AdminPanelComponent
+          ),
+        canActivate: [AuthGuard],
+        children: [
+          {
+            path: 'products',
+            loadComponent: () =>
+              import(
+                './admin/admin-panel/manage-products/manage-products.component'
+              ).then((m) => m.ManageProductsComponent),
+            canActivate: [AuthGuard],
+          },
+          {
+            path: 'users',
+            loadComponent: () =>
+              import(
+                './admin/admin-panel/manage-users/manage-users.component'
+              ).then((m) => m.ManageUsersComponent),
+            canActivate: [AuthGuard],
+          },
+        ],
       },
     ],
   },

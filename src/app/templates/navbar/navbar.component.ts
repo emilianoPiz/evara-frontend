@@ -54,6 +54,13 @@ export class NavbarComponent implements OnInit {
         { path: '/book-us', label: 'Book with us!' },
         { path: '/testimonials', label: 'Testimonials' },
       ];
+    } else if (url.includes('/admin')) {
+      this.links = [
+        { path: '/admin/panel', label: 'Panel' },
+        { path: '/admin', label: 'Dashboard' },
+        { path: '/admin/panel/products', label: 'Manage products' },
+        { path: '/admin/panel/users', label: 'Manage Users' },
+      ];
     }
   }
 }
