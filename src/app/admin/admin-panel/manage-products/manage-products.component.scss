@@ -1,0 +1,53 @@
+.products-manage {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.products-manage h3 {
+    margin-bottom: 15px;
+    color: var(--accent-color);
+}
+
+.products-manage form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.products-manage input,
+.products-manage textarea,
+.products-manage button {
+    font-size: 1rem;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+}
+
+.products-manage input[type='text'],
+.products-manage input[type='number'],
+.products-manage input[type='url'],
+.products-manage input[type='datetime-local'],
+.products-manage textarea {
+    flex: 1 1 calc(50% - 30px);
+}
+
+.products-manage button {
+    flex: 1 1 100%;
+    background-color: var(--primary-color);
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.products-manage button:hover {
+    background-color: var(--accent-color);
+}

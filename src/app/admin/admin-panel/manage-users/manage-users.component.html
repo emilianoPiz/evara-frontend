@@ -1,0 +1,41 @@
+<!-- Users Management -->
+<div class="user-manage">
+  <h3>Manage Users</h3>
+  <form (ngSubmit)="addUser(userForm.value)" #userForm="ngForm">
+    <input type="text" name="id" ngModel placeholder="User ID" required />
+    <input type="text" name="name" ngModel placeholder="User Name" required />
+    <input
+      type="email"
+      name="email"
+      ngModel
+      placeholder="User Email"
+      required
+    />
+    <input
+      type="password"
+      name="password"
+      ngModel
+      required
+      placeholder="password"
+    />
+    <button type="submit">Add User</button>
+  </form>
+
+  <form (ngSubmit)="updateUser(userId, userForm.value)" #userForm="ngForm">
+    <input
+      type="text"
+      name="id"
+      [(ngModel)]="userId"
+      placeholder="User ID"
+      required
+    />
+    <input type="text" name="name" ngModel placeholder="User Name" />
+    <input type="email" name="email" ngModel placeholder="User Email" />
+    <button type="submit">Update User</button>
+  </form>
+
+  <form (ngSubmit)="deleteUser(userId)">
+    <input type="text" [(ngModel)]="userId" placeholder="User ID" required />
+    <button type="submit">Delete User</button>
+  </form>
+</div>

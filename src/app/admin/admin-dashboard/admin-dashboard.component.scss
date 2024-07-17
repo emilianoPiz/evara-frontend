@@ -1,54 +1,27 @@
 .dashboard-container {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 20px;
   }
   
-  .profile-section {
-    display: flex;
-    justify-content: center;
+  .profile-section mat-card, .stats-section mat-card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .profile-section mat-card:hover, .stats-section mat-card:hover {
+    transform: translateY(-10px);
   }
   
   .profile-avatar {
-    background: url('/assets/avatar.png') no-repeat center;
+    
     background-size: cover;
   }
   
-  .profile-stats {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .earning-amount {
-    font-size: 24px;
-    font-weight: bold;
-  }
-  
-  .stats-section {
-    display: flex;
-    justify-content: space-around;
-  }
-  
-  .stat-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .stat-value {
-    font-size: 24px;
-    font-weight: bold;
-  }
-  
-  .stat-label {
-    margin-top: 8px;
-  }
-  
-  .charts-section {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+  /* Responsive grid */
+  @media (max-width: 768px) {
+    // .stats-section mat-grid-list {
+    //   col: 2;
+    // }
   }
   
