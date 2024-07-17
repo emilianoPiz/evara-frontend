@@ -14,6 +14,7 @@ import {
   MatSidenavContent,
 } from '@angular/material/sidenav';
 import { MatNavList } from '@angular/material/list';
+import { EvaraSpinnerComponent } from '../../../templates/evara-spinner/evara-spinner.component';
 
 @Component({
   selector: 'app-shop-home',
@@ -28,6 +29,7 @@ import { MatNavList } from '@angular/material/list';
     ProductCardComponent,
     CartComponent,
     RouterModule,
+    EvaraSpinnerComponent,
   ],
   templateUrl: './shop-home.component.html',
   styleUrls: ['./shop-home.component.scss'],

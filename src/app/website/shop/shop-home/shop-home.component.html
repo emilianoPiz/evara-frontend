@@ -19,6 +19,7 @@
     <router-outlet></router-outlet>
     <div class="container-products">
       <ng-container *ngFor="let product of data; trackBy: trackById">
+        @if(!product){<app-evara-spinner></app-evara-spinner>}
         <app-product-card
           [product]="product"
           (addToCart)="addToCart($event)"
