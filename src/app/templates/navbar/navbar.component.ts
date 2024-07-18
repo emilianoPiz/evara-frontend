@@ -56,8 +56,11 @@ export class NavbarComponent implements OnInit {
       ];
     } else if (url.includes('/admin')) {
       this.links = [
-        { path: '/admin/panel', label: 'Panel' },
         { path: '/admin', label: 'Dashboard' },
+        { path: '/admin/promotions', label: 'Promotions' },
+        { path: '/admin/orders', label: 'Orders' },
+        { path: '/admin/panel', label: 'Main Panel' },
+        { path: '/admin/panel/promotions', label: 'Manage promotions' },
         { path: '/admin/panel/products', label: 'Manage products' },
         { path: '/admin/panel/users', label: 'Manage Users' },
       ];

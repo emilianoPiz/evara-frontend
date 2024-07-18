@@ -109,6 +109,14 @@ export const ROUTES: Routes = [
               ).then((m) => m.ManageUsersComponent),
             canActivate: [AuthGuard],
           },
+          {
+            path: 'promotions',
+            loadComponent: () =>
+              import(
+                './admin/admin-panel/manage-promotions/manage-promotions.component'
+              ).then((m) => m.ManagePromotionsComponent),
+            canActivate: [AuthGuard],
+          },
         ],
       },
     ],

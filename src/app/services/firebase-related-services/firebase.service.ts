@@ -50,4 +50,21 @@ export class FirebaseService {
     const userDoc = doc(this.firestore, `users/${userId}`);
     return updateDoc(userDoc, user);
   }
+
+  // Promotions Methods
+  insertPromotion(promotion: any) {
+    const promotionId = promotion.id;
+    const promotionDoc = doc(this.firestore, `promotions/${promotionId}`);
+    return setDoc(promotionDoc, promotion);
+  }
+
+  deletePromotion(promotionId: string) {
+    const promotionDoc = doc(this.firestore, `promotions/${promotionId}`);
+    return deleteDoc(promotionDoc);
+  }
+
+  updatePromotion(promotionId: string, promotion: any) {
+    const promotionDoc = doc(this.firestore, `promotions/${promotionId}`);
+    return updateDoc(promotionDoc, promotion);
+  }
 }

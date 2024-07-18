@@ -1,0 +1,282 @@
+<!-- Promotions Management -->
+<div class="promotions-manage">
+  <h3>Manage Promotions</h3>
+  <form
+    (ngSubmit)="addPromotion(addPromotionForm.value)"
+    #addPromotionForm="ngForm"
+  >
+    <input
+      type="text"
+      name="promotion_name"
+      ngModel
+      placeholder="Promotion Name"
+      required
+    />
+    <input
+      type="number"
+      name="discount_percentage"
+      ngModel
+      placeholder="Discount Percentage"
+    />
+    <input
+      type="number"
+      name="discount_amount"
+      ngModel
+      placeholder="Discount Amount"
+    />
+    <input
+      type="text"
+      name="category"
+      ngModel
+      placeholder="Category"
+      required
+    />
+    <input
+      type="datetime-local"
+      name="start_date"
+      ngModel
+      placeholder="Start Date"
+      required
+    />
+    <input
+      type="datetime-local"
+      name="end_date"
+      ngModel
+      placeholder="End Date"
+      required
+    />
+    <input type="text" name="promo_code" ngModel placeholder="Promo Code" />
+    <textarea name="description" ngModel placeholder="Description"></textarea>
+    <textarea
+      name="terms_and_conditions"
+      ngModel
+      placeholder="Terms and Conditions"
+      required
+    ></textarea>
+    <input
+      type="text"
+      name="excluded_products"
+      ngModel
+      placeholder="Excluded Products (comma separated)"
+    />
+    <input
+      type="number"
+      name="minimum_quantity"
+      ngModel
+      placeholder="Minimum Quantity"
+    />
+    <input
+      type="number"
+      name="product_limit"
+      ngModel
+      placeholder="Product Limit"
+    />
+    <input type="number" name="usage_limit" ngModel placeholder="Usage Limit" />
+    <input
+      type="text"
+      name="customer_eligibility"
+      ngModel
+      placeholder="Customer Eligibility (comma separated)"
+    />
+    <input
+      type="text"
+      name="applicable_regions"
+      ngModel
+      placeholder="Applicable Regions (comma separated)"
+    />
+    <input
+      type="number"
+      name="max_discount_amount"
+      ngModel
+      placeholder="Max Discount Amount"
+    />
+    <label
+      ><input type="checkbox" name="requires_account" ngModel /> Requires
+      Account</label
+    >
+    <label
+      ><input type="checkbox" name="free_shipping" ngModel /> Free
+      Shipping</label
+    >
+    <input
+      type="number"
+      name="priority_level"
+      ngModel
+      placeholder="Priority Level"
+    />
+    <label
+      ><input type="checkbox" name="is_exclusive" ngModel required /> Is
+      Exclusive</label
+    >
+    <label
+      ><input type="checkbox" name="combinable" ngModel required />
+      Combinable</label
+    >
+    <input type="number" name="usage_count" ngModel placeholder="Usage Count" />
+    <input type="number" name="max_usage" ngModel placeholder="Max Usage" />
+    <input
+      type="datetime-local"
+      name="created_at"
+      ngModel
+      placeholder="Created At"
+      required
+    />
+    <input
+      type="datetime-local"
+      name="updated_at"
+      ngModel
+      placeholder="Updated At"
+      required
+    />
+    <button type="submit">Add Promotion</button>
+  </form>
+
+  <!-- Update Promotion Form -->
+  <form
+    (ngSubmit)="updatePromotion(updatePromotionId, updatePromotionForm.value)"
+    #updatePromotionForm="ngForm"
+  >
+    <input
+      type="text"
+      name="id"
+      [(ngModel)]="updatePromotionId"
+      placeholder="Promotion ID"
+      required
+    />
+    <input
+      type="text"
+      name="promotion_name"
+      ngModel
+      placeholder="Promotion Name"
+      required
+    />
+    <input
+      type="number"
+      name="discount_percentage"
+      ngModel
+      placeholder="Discount Percentage"
+    />
+    <input
+      type="number"
+      name="discount_amount"
+      ngModel
+      placeholder="Discount Amount"
+    />
+    <input
+      type="text"
+      name="category"
+      ngModel
+      placeholder="Category"
+      required
+    />
+    <input
+      type="datetime-local"
+      name="start_date"
+      ngModel
+      placeholder="Start Date"
+      required
+    />
+    <input
+      type="datetime-local"
+      name="end_date"
+      ngModel
+      placeholder="End Date"
+      required
+    />
+    <input type="text" name="promo_code" ngModel placeholder="Promo Code" />
+    <textarea name="description" ngModel placeholder="Description"></textarea>
+    <textarea
+      name="terms_and_conditions"
+      ngModel
+      placeholder="Terms and Conditions"
+      required
+    ></textarea>
+    <input
+      type="text"
+      name="excluded_products"
+      ngModel
+      placeholder="Excluded Products (comma separated)"
+    />
+    <input
+      type="number"
+      name="minimum_quantity"
+      ngModel
+      placeholder="Minimum Quantity"
+    />
+    <input
+      type="number"
+      name="product_limit"
+      ngModel
+      placeholder="Product Limit"
+    />
+    <input type="number" name="usage_limit" ngModel placeholder="Usage Limit" />
+    <input
+      type="text"
+      name="customer_eligibility"
+      ngModel
+      placeholder="Customer Eligibility (comma separated)"
+    />
+    <input
+      type="text"
+      name="applicable_regions"
+      ngModel
+      placeholder="Applicable Regions (comma separated)"
+    />
+    <input
+      type="number"
+      name="max_discount_amount"
+      ngModel
+      placeholder="Max Discount Amount"
+    />
+    <label
+      ><input type="checkbox" name="requires_account" ngModel /> Requires
+      Account</label
+    >
+    <label
+      ><input type="checkbox" name="free_shipping" ngModel /> Free
+      Shipping</label
+    >
+    <input
+      type="number"
+      name="priority_level"
+      ngModel
+      placeholder="Priority Level"
+    />
+    <label
+      ><input type="checkbox" name="is_exclusive" ngModel required /> Is
+      Exclusive</label
+    >
+    <label
+      ><input type="checkbox" name="combinable" ngModel required />
+      Combinable</label
+    >
+    <input type="number" name="usage_count" ngModel placeholder="Usage Count" />
+    <input type="number" name="max_usage" ngModel placeholder="Max Usage" />
+    <input
+      type="datetime-local"
+      name="created_at"
+      ngModel
+      placeholder="Created At"
+      required
+    />
+    <input
+      type="datetime-local"
+      name="updated_at"
+      ngModel
+      placeholder="Updated At"
+      required
+    />
+    <button type="submit">Update Promotion</button>
+  </form>
+
+  <!-- Delete Promotion Form -->
+  <form (ngSubmit)="deletePromotion(deletePromotionId)">
+    <input
+      type="text"
+      [(ngModel)]="deletePromotionId"
+      placeholder="Promotion ID"
+      required
+    />
+    <button type="submit">Delete Promotion</button>
+  </form>
+</div>
