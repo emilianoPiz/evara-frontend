@@ -1,0 +1,60 @@
+.promotion-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 16px 0;
+    background-color: #fff;
+  }
+  
+  .promotion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .promotion-name {
+    font-size: 1.5em;
+    margin: 0;
+  }
+  
+  .promotion-category {
+    font-size: 0.9em;
+    color: #666;
+  }
+  
+  .promotion-body {
+    margin: 16px 0;
+  }
+  
+  .promotion-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .promotion-dates, .promotion-status, .promotion-exclusivity, .promotion-combinable {
+    margin: 0;
+    font-size: 0.9em;
+    color: #666;
+  }
+  
+  .promotion-status.active {
+    color: green;
+  }
+  
+  .promotion-status.inactive {
+    color: red;
+  }
+  
+  .delete-button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+  }
+  
+  .delete-button:hover {
+    background-color: #ff1a1a;
+  }

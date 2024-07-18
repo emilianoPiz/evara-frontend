@@ -31,20 +31,7 @@
       placeholder="Category"
       required
     />
-    <input
-      type="datetime-local"
-      name="start_date"
-      ngModel
-      placeholder="Start Date"
-      required
-    />
-    <input
-      type="datetime-local"
-      name="end_date"
-      ngModel
-      placeholder="End Date"
-      required
-    />
+
     <input type="text" name="promo_code" ngModel placeholder="Promo Code" />
     <textarea name="description" ngModel placeholder="Description"></textarea>
     <textarea
@@ -90,44 +77,68 @@
       ngModel
       placeholder="Max Discount Amount"
     />
-    <label
-      ><input type="checkbox" name="requires_account" ngModel /> Requires
-      Account</label
-    >
-    <label
-      ><input type="checkbox" name="free_shipping" ngModel /> Free
-      Shipping</label
-    >
     <input
       type="number"
       name="priority_level"
       ngModel
       placeholder="Priority Level"
     />
-    <label
-      ><input type="checkbox" name="is_exclusive" ngModel required /> Is
-      Exclusive</label
-    >
-    <label
-      ><input type="checkbox" name="combinable" ngModel required />
-      Combinable</label
-    >
     <input type="number" name="usage_count" ngModel placeholder="Usage Count" />
     <input type="number" name="max_usage" ngModel placeholder="Max Usage" />
-    <input
-      type="datetime-local"
-      name="created_at"
-      ngModel
-      placeholder="Created At"
-      required
-    />
-    <input
-      type="datetime-local"
-      name="updated_at"
-      ngModel
-      placeholder="Updated At"
-      required
-    />
+
+    <div class="checkbox-container">
+      <label
+        ><input type="checkbox" name="requires_account" ngModel /> Requires
+        Account</label
+      >
+      <label
+        ><input type="checkbox" name="free_shipping" ngModel /> Free
+        Shipping</label
+      >
+
+      <label
+        ><input type="checkbox" name="is_exclusive" ngModel required /> Is
+        Exclusive</label
+      >
+      <label
+        ><input type="checkbox" name="combinable" ngModel required />
+        Combinable</label
+      >
+    </div>
+    <div class="date-container">
+      <p>Data creazione:</p>
+      <input
+        type="datetime-local"
+        name="created_at"
+        ngModel
+        placeholder="Created At"
+        required
+      />
+      <p>Data aggiornamento:</p>
+      <input
+        type="datetime-local"
+        name="updated_at"
+        ngModel
+        placeholder="Updated At"
+        required
+      />
+      <p>Data inizio:</p>
+      <input
+        type="datetime-local"
+        name="start_date"
+        ngModel
+        placeholder="Start Date"
+        required
+      />
+      <p>Data fine:</p>
+      <input
+        type="datetime-local"
+        name="end_date"
+        ngModel
+        placeholder="End Date"
+        required
+      />
+    </div>
     <button type="submit">Add Promotion</button>
   </form>
 
@@ -169,20 +180,7 @@
       placeholder="Category"
       required
     />
-    <input
-      type="datetime-local"
-      name="start_date"
-      ngModel
-      placeholder="Start Date"
-      required
-    />
-    <input
-      type="datetime-local"
-      name="end_date"
-      ngModel
-      placeholder="End Date"
-      required
-    />
+
     <input type="text" name="promo_code" ngModel placeholder="Promo Code" />
     <textarea name="description" ngModel placeholder="Description"></textarea>
     <textarea
@@ -228,44 +226,68 @@
       ngModel
       placeholder="Max Discount Amount"
     />
-    <label
-      ><input type="checkbox" name="requires_account" ngModel /> Requires
-      Account</label
-    >
-    <label
-      ><input type="checkbox" name="free_shipping" ngModel /> Free
-      Shipping</label
-    >
+
     <input
       type="number"
       name="priority_level"
       ngModel
       placeholder="Priority Level"
     />
-    <label
-      ><input type="checkbox" name="is_exclusive" ngModel required /> Is
-      Exclusive</label
-    >
-    <label
-      ><input type="checkbox" name="combinable" ngModel required />
-      Combinable</label
-    >
+
     <input type="number" name="usage_count" ngModel placeholder="Usage Count" />
     <input type="number" name="max_usage" ngModel placeholder="Max Usage" />
-    <input
-      type="datetime-local"
-      name="created_at"
-      ngModel
-      placeholder="Created At"
-      required
-    />
-    <input
-      type="datetime-local"
-      name="updated_at"
-      ngModel
-      placeholder="Updated At"
-      required
-    />
+    <div class="checkbox-container">
+      <label
+        ><input type="checkbox" name="requires_account" ngModel /> Requires
+        Account</label
+      >
+      <label
+        ><input type="checkbox" name="free_shipping" ngModel /> Free
+        Shipping</label
+      >
+      <label
+        ><input type="checkbox" name="is_exclusive" ngModel required /> Is
+        Exclusive</label
+      >
+      <label
+        ><input type="checkbox" name="combinable" ngModel required />
+        Combinable</label
+      >
+    </div>
+    <div class="date-container">
+      <p>Data creazione:</p>
+      <input
+        type="datetime-local"
+        name="start_date"
+        ngModel
+        placeholder="Start Date"
+        required
+      />
+      <p>Data aggiornamento:</p>
+      <input
+        type="datetime-local"
+        name="end_date"
+        ngModel
+        placeholder="End Date"
+        required
+      />
+      <p>Data inizio:</p>
+      <input
+        type="datetime-local"
+        name="created_at"
+        ngModel
+        placeholder="Created At"
+        required
+      />
+      <p>Data fine:</p>
+      <input
+        type="datetime-local"
+        name="updated_at"
+        ngModel
+        placeholder="Updated At"
+        required
+      />
+    </div>
     <button type="submit">Update Promotion</button>
   </form>
 

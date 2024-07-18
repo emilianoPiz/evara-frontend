@@ -22,7 +22,14 @@
     background: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
+.checkbox-container{
+    display: grid;
+}
+.date-container{
+    display: flex;
+    justify-content:center;
+    max-width: 800px;
+}
 .promotions-manage input,
 .promotions-manage textarea,
 .promotions-manage button {

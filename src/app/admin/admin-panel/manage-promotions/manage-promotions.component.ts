@@ -1,6 +1,15 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FirebaseService } from '../../../services/firebase-related-services/firebase.service';
+import { Promotion } from '../../../models/promotion.model';
+import {
+  Firestore,
+  collection,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+  doc,
+} from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-manage-promotions',
@@ -14,38 +23,41 @@ export class ManagePromotionsComponent {
   updatePromotionId: string = '';
   deletePromotionId: string = '';
 
-  constructor(private firebaseService: FirebaseService) {}
+  constructor(
+    private firebaseService: FirebaseService,
+    private firestore: Firestore
+  ) {}
 
-  addPromotion(promotion: any) {
-    this.firebaseService
-      .insertPromotion(promotion)
-      .then(() => {
-        console.log('Promotion added successfully!');
-      })
-      .catch((error) => {
-        console.error('Error adding promotion: ', error);
-      });
+  async addPromotion(promotion: Promotion) {
+    try {
+      const docRef = await addDoc(
+        collection(this.firestore, 'promotions'),
+        promotion
+      );
+      promotion.id = docRef.id; // Store the auto-generated ID in your promotion object if needed
+      console.log('Promotion added successfully with ID:', promotion.id);
+    } catch (error) {
+      console.error('Error adding promotion: ', error);
+    }
   }
 
-  updatePromotion(promotionId: string, promotion: any) {
-    this.firebaseService
-      .updatePromotion(promotionId, promotion)
-      .then(() => {
-        console.log('Promotion updated successfully!');
-      })
-      .catch((error) => {
-        console.error('Error updating promotion: ', error);
-      });
+  async updatePromotion(promotionId: string, promotion: Partial<Promotion>) {
+    try {
+      const promotionRef = doc(this.firestore, `promotions/${promotionId}`);
+      await updateDoc(promotionRef, promotion);
+      console.log('Promotion updated successfully!');
+    } catch (error) {
+      console.error('Error updating promotion: ', error);
+    }
   }
 
-  deletePromotion(promotionId: string) {
-    this.firebaseService
-      .deletePromotion(promotionId)
-      .then(() => {
-        console.log('Promotion deleted successfully!');
-      })
-      .catch((error) => {
-        console.error('Error deleting promotion: ', error);
-      });
+  async deletePromotion(promotionId: string) {
+    try {
+      const promotionRef = doc(this.firestore, `promotions/${promotionId}`);
+      await deleteDoc(promotionRef);
+      console.log('Promotion deleted successfully!');
+    } catch (error) {
+      console.error('Error deleting promotion: ', error);
+    }
   }
 }
