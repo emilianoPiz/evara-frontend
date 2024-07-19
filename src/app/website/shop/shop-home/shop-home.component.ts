@@ -15,6 +15,7 @@ import {
 } from '@angular/material/sidenav';
 import { MatNavList } from '@angular/material/list';
 import { EvaraSpinnerComponent } from '../../../templates/evara-spinner/evara-spinner.component';
+import { SearchBarComponent } from '../../../templates/search-bar/search-bar.component';
 
 @Component({
   selector: 'app-shop-home',
@@ -30,6 +31,7 @@ import { EvaraSpinnerComponent } from '../../../templates/evara-spinner/evara-sp
     CartComponent,
     RouterModule,
     EvaraSpinnerComponent,
+    SearchBarComponent,
   ],
   templateUrl: './shop-home.component.html',
   styleUrls: ['./shop-home.component.scss'],
@@ -39,7 +41,12 @@ export class ShopHomeComponent implements OnInit {
   private cartService = inject(CartService);
   data: Product[] = [];
   isLoading = true;
-
+  searchTerm: string = '';
+  filteredProducts: any[] = [];
+  Products: Product[] = [];
+  displayedProducts: Product[] = [];
+  currentIndex: number = 0;
+  pageSize: number = 10;
   trackById(index: number, item: any): number {
     return item.id;
   }
@@ -70,5 +77,34 @@ export class ShopHomeComponent implements OnInit {
       price: product.price,
       total: product.price,
     });
+  }
+
+  filterProducts() {
+    this.filteredProducts = this.Products.filter(
+      (element) =>
+        element.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+        element.description
+          .toLowerCase()
+          .includes(this.searchTerm.toLowerCase())
+    );
+    this.resetDisplayedProducts();
+  }
+  loadMoreProducts() {
+    const nextIndex = this.currentIndex + this.pageSize;
+    const nextProducts = this.filteredProducts.slice(
+      this.currentIndex,
+      nextIndex
+    );
+    this.displayedProducts = this.displayedProducts.concat(nextProducts);
+    this.currentIndex = nextIndex;
+  }
+  onSearch(searchTerm: string) {
+    this.searchTerm = searchTerm;
+    this.filterProducts();
+  }
+  resetDisplayedProducts() {
+    this.displayedProducts = [];
+    this.currentIndex = 0;
+    this.loadMoreProducts();
   }
 }

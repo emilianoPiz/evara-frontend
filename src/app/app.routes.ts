@@ -11,7 +11,6 @@ export const ROUTES: Routes = [
   },
   {
     path: 'signup',
-
     loadComponent: () =>
       import('./templates/signup/signup.component').then(
         (m) => m.SignupComponent
@@ -19,7 +18,6 @@ export const ROUTES: Routes = [
   },
   {
     path: 'login',
-
     loadComponent: () =>
       import('./templates/login/login.component').then((m) => m.LoginComponent),
   },

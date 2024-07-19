@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { PromotionItemComponent } from './promotion-item/promotion-item.component';
 import { SearchBarComponent } from '../../templates/search-bar/search-bar.component';
+import { Promotion } from '../../models/promotion.model';
 
 @Component({
   selector: 'app-promotion-list',
@@ -12,18 +13,18 @@ import { SearchBarComponent } from '../../templates/search-bar/search-bar.compon
 export class PromotionListComponent {
   searchTerm: string = '';
   filteredPromotions: any[] = [];
-  Promotions: any[] = [];
+  Promotions: Promotion[] = [];
   displayedPromotions: any[] = [];
   currentIndex: number = 0;
   pageSize: number = 10;
 
   filterPromotions() {
     this.filteredPromotions = this.Promotions.filter(
-      (game) =>
-        game.title.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-        game.short_description
+      (element) =>
+        element.promotion_name
           .toLowerCase()
-          .includes(this.searchTerm.toLowerCase())
+          .includes(this.searchTerm.toLowerCase()) ||
+        element.category.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
     this.resetDisplayedPromotions();
   }
