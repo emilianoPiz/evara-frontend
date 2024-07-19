@@ -49,7 +49,7 @@ export class ShopHomeComponent implements OnInit {
       this.data = products;
       setTimeout(() => {
         this.isLoading = false;
-      }, 1500); // 1.5 seconds delay
+      }, 1500);
     });
     console.log('initialize shop-home');
   }

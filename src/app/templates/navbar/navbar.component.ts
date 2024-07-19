@@ -35,7 +35,10 @@ export class NavbarComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    this.updateLinks(this.router.url);
+    //this is wrapped in an async function becuase otherwise angular will throw the  ng0100 err Expression Changed afterview init
+    setTimeout(() => {
+      this.updateLinks(this.router.url);
+    }, 0);
   }
 
   private updateLinks(url: string): void {
