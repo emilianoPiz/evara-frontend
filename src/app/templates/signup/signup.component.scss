@@ -1,0 +1,32 @@
+.sign-up-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  .sign-up-card {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background: var(--background-color);
+    transition: transform 0.3s ease;
+  }
+  
+  .sign-up-card:hover {
+    transform: scale(1.05);
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
