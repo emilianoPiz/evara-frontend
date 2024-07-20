@@ -21,10 +21,13 @@
   <mat-sidenav-content>
     <app-navbar #navbarComponent (menuToggle)="sidenav.toggle()"></app-navbar>
     <app-search-bar
-      ParentComponent="Promotions"
+      ParentComponent="Products"
       (searchEvent)="onSearch($event)"
     ></app-search-bar>
     <router-outlet></router-outlet>
+
+    <!--THIS SHOULD BE A SEPARATE COMPONENT-->
+
     <div class="container-products">
       <div *ngIf="isLoading" class="center-spinner">
         <app-evara-spinner></app-evara-spinner>
@@ -41,5 +44,7 @@
         </ng-container>
       </ng-container>
     </div>
+
+    <!--TILL HERE-->
   </mat-sidenav-content>
 </mat-sidenav-container>

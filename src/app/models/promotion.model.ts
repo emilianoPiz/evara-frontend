@@ -28,35 +28,3 @@ export interface Promotion {
   created_at: Timestamp; // Timestamp when the promotion was created
   updated_at: Timestamp; // Timestamp when the promotion was last updated
 }
-
-// Example implementation of a promotion
-const black_friday_promo: Promotion = {
-  promotion_name: 'Black Friday Sale',
-  discount_percentage: 30,
-  category: 'All Products',
-  start_date: Timestamp.fromDate(new Date('2024-11-29')),
-  end_date: Timestamp.fromDate(new Date('2024-12-02')),
-  promo_code: 'BLACKFRIDAY30',
-  description: 'Incredible discounts on all products during Black Friday!',
-  terms_and_conditions: [
-    'Valid only for online purchases',
-    'Cannot be combined with other promotions',
-    'Discount applies to order total before shipping costs',
-  ],
-  excluded_products: ['Gift Cards', 'Services'],
-  minimum_quantity: 1,
-  product_limit: 10,
-  usage_limit: 1000,
-  customer_eligibility: ['Registered Customers', 'Newsletter Subscribers'],
-  applicable_regions: ['US', 'Canada'],
-  max_discount_amount: 50, // Maximum discount of $50
-  requires_account: true, // Customers must have an account
-  free_shipping: true, // Free shipping included
-  priority_level: 1, // High priority promotion
-  is_exclusive: false, // Not exclusive
-  combinable: false, // Not combinable with other promotions
-  usage_count: 0,
-  max_usage: 1000,
-  created_at: Timestamp.fromDate(new Date('2024-01-01')),
-  updated_at: Timestamp.fromDate(new Date('2024-01-01')),
-};
