@@ -32,27 +32,32 @@ export const ROUTES: Routes = [
           import('./website/shop/shop-home/shop-home.component').then(
             (m) => m.ShopHomeComponent
           ),
-
-        children: [
-          {
-            path: 'cart',
-            loadComponent: () =>
-              import('./website/shop/shop-cart/shop-cart.component').then(
-                (m) => m.CartComponent
-              ),
-          },
-          {
-            path: 'profile',
-            loadComponent: () =>
-              import('./website/shop/shop-profile/shop-profile.component').then(
-                (m) => m.ProfileComponent
-              ),
-            canActivate: [AuthGuard],
-          },
-        ],
+      },
+      {
+        path: 'product/:id',
+        loadComponent: () =>
+          import(
+            './website/shop/product-card-detail/product-card-detail.component'
+          ).then((m) => m.ProductCardDetailComponent),
+      },
+      {
+        path: 'cart',
+        loadComponent: () =>
+          import('./website/shop/shop-cart/shop-cart.component').then(
+            (m) => m.CartComponent
+          ),
+      },
+      {
+        path: 'profile',
+        loadComponent: () =>
+          import('./website/shop/shop-profile/shop-profile.component').then(
+            (m) => m.ProfileComponent
+          ),
+        canActivate: [AuthGuard],
       },
     ],
   },
+
   {
     path: 'retreat',
     loadComponent: () =>

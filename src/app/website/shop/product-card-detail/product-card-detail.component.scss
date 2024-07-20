@@ -1,0 +1,14 @@
+.product-detail-card {
+    max-width: 600px;
+    margin: 20px auto;
+  }
+  
+  .product-detail-card img {
+    max-height: 300px;
+    object-fit: cover;
+  }
+  
+  mat-card-content p {
+    margin: 5px 0;
+  }
+  

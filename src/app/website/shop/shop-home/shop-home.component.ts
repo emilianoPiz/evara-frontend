@@ -54,7 +54,7 @@ export class ShopHomeComponent implements OnInit {
   ngOnInit() {
     this.getAllProducts().subscribe((products) => {
       this.data = products;
-      this.filterProducts(); // Apply initial filter to populate displayedProducts
+      this.filterProducts();
       setTimeout(() => {
         this.isLoading = false;
       }, 1500);
