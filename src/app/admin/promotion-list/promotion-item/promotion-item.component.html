@@ -1,69 +1,61 @@
-<ng-container *ngIf="promotions$ | async as promotions">
-  <div *ngFor="let promotion of promotions" class="promotion-card">
-    <div class="promotion-card">
-      <div class="promotion-header">
-        <h2 class="promotion-name">{{ promotion.promotion_name }}</h2>
-        <span class="promotion-category">{{ promotion.category }}</span>
-        <button class="delete-button" (click)="deletePromotion(promotion.id)">
-          Delete
-        </button>
-      </div>
-      <div class="promotion-body">
-        <p class="promotion-description">{{ promotion.description }}</p>
-        <div class="promotion-details">
-          <strong>Terms and Conditions:</strong>
-          <ul>
-            <li *ngFor="let term of promotion.terms_and_conditions">
-              {{ term }}
-            </li>
-          </ul>
-          <strong>Excluded Products:</strong>
-          <ul>
-            <li *ngFor="let product of promotion.excluded_products">
-              {{ product }}
-            </li>
-          </ul>
-          <p>Minimum Quantity: {{ promotion.minimum_quantity }}</p>
-          <p>Product Limit: {{ promotion.product_limit }}</p>
-          <p>Usage Limit: {{ promotion.usage_limit }}</p>
-          <strong>Customer Eligibility:</strong>
-          <ul>
-            <li *ngFor="let customer of promotion.customer_eligibility">
-              {{ customer }}
-            </li>
-          </ul>
-          <strong>Applicable Regions:</strong>
-          <ul>
-            <li *ngFor="let region of promotion.applicable_regions">
-              {{ region }}
-            </li>
-          </ul>
-          <p>
-            Max Discount Amount: {{ promotion.max_discount_amount | currency }}
-          </p>
-          <p>
-            Requires Account: {{ promotion.requires_account ? "Yes" : "No" }}
-          </p>
-          <p>Free Shipping: {{ promotion.free_shipping ? "Yes" : "No" }}</p>
-        </div>
-      </div>
-      <div class="promotion-footer">
-        <p class="promotion-dates">
-          Valid from {{ promotion.start_date }} to {{ promotion.end_date }}
-        </p>
-        <div
-          class="promotion-status"
-          [ngClass]="{ active: isActive, inactive: !isActive }"
-        >
-          Status: {{ isActive ? "Active" : "Inactive" }}
-        </div>
-        <p class="promotion-exclusivity">
-          Exclusive: {{ promotion.is_exclusive ? "Yes" : "No" }}
-        </p>
-        <p class="promotion-combinable">
-          Combinable: {{ promotion.combinable ? "Yes" : "No" }}
-        </p>
-      </div>
+<div *ngIf="promotion" class="promotion-card">
+  <div class="promotion-header">
+    <h2 class="promotion-name">{{ promotion.promotion_name }}</h2>
+    <span class="promotion-category">{{ promotion.category }}</span>
+    <button class="delete-button" (click)="deletePromotion(promotion.id)">
+      Delete
+    </button>
+  </div>
+  <div class="promotion-body">
+    <p class="promotion-description">{{ promotion.description }}</p>
+    <div class="promotion-details">
+      <strong>Terms and Conditions:</strong>
+      <ul>
+        <li *ngFor="let term of promotion.terms_and_conditions">
+          {{ term }}
+        </li>
+      </ul>
+      <strong>Excluded Products:</strong>
+      <ul>
+        <li *ngFor="let product of promotion.excluded_products">
+          {{ product }}
+        </li>
+      </ul>
+      <p>Minimum Quantity: {{ promotion.minimum_quantity }}</p>
+      <p>Product Limit: {{ promotion.product_limit }}</p>
+      <p>Usage Limit: {{ promotion.usage_limit }}</p>
+      <strong>Customer Eligibility:</strong>
+      <ul>
+        <li *ngFor="let customer of promotion.customer_eligibility">
+          {{ customer }}
+        </li>
+      </ul>
+      <strong>Applicable Regions:</strong>
+      <ul>
+        <li *ngFor="let region of promotion.applicable_regions">
+          {{ region }}
+        </li>
+      </ul>
+      <p>Max Discount Amount: {{ promotion.max_discount_amount | currency }}</p>
+      <p>Requires Account: {{ promotion.requires_account ? "Yes" : "No" }}</p>
+      <p>Free Shipping: {{ promotion.free_shipping ? "Yes" : "No" }}</p>
     </div>
   </div>
-</ng-container>
+  <div class="promotion-footer">
+    <p class="promotion-dates">
+      Valid from {{ promotion.start_date }} to {{ promotion.end_date }}
+    </p>
+    <div
+      class="promotion-status"
+      [ngClass]="{ active: isActive, inactive: !isActive }"
+    >
+      Status: {{ isActive ? "Active" : "Inactive" }}
+    </div>
+    <p class="promotion-exclusivity">
+      Exclusive: {{ promotion.is_exclusive ? "Yes" : "No" }}
+    </p>
+    <p class="promotion-combinable">
+      Combinable: {{ promotion.combinable ? "Yes" : "No" }}
+    </p>
+  </div>
+</div>

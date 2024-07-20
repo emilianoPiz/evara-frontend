@@ -1,6 +1,17 @@
-<app-search-bar
-  ParentComponent="Promotions"
-  (searchEvent)="onSearch($event)"
-></app-search-bar>
+<div>
+  <app-search-bar
+    ParentComponent="Promotions"
+    (searchEvent)="onSearch($event)"
+  ></app-search-bar>
 
-<app-promotion-item></app-promotion-item>
+  <ng-container *ngFor="let promotion of displayedPromotions">
+    <app-promotion-item [promotion]="promotion"></app-promotion-item>
+  </ng-container>
+</div>
+
+<button
+  *ngIf="currentIndex < filteredPromotions.length"
+  (click)="loadMorePromotions()"
+>
+  Load More
+</button>

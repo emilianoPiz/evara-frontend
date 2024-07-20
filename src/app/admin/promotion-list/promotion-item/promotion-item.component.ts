@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
@@ -21,6 +21,7 @@ import { Promotion } from '../../../models/promotion.model';
 export class PromotionItemComponent {
   promotions$: Observable<Promotion[]>;
   isActive: boolean = false;
+  @Input() promotion!: Promotion;
 
   constructor(@Inject(Firestore) private firestore: Firestore) {
     this.promotions$ = this.getAllPromotions();
