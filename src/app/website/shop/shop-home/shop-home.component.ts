@@ -42,11 +42,11 @@ export class ShopHomeComponent implements OnInit {
   data: Product[] = [];
   isLoading = true;
   searchTerm: string = '';
-  filteredProducts: any[] = [];
-  Products: Product[] = [];
+  filteredProducts: Product[] = [];
   displayedProducts: Product[] = [];
   currentIndex: number = 0;
   pageSize: number = 10;
+
   trackById(index: number, item: any): number {
     return item.id;
   }
@@ -54,6 +54,7 @@ export class ShopHomeComponent implements OnInit {
   ngOnInit() {
     this.getAllProducts().subscribe((products) => {
       this.data = products;
+      this.filterProducts(); // Apply initial filter to populate displayedProducts
       setTimeout(() => {
         this.isLoading = false;
       }, 1500);
@@ -80,15 +81,14 @@ export class ShopHomeComponent implements OnInit {
   }
 
   filterProducts() {
-    this.filteredProducts = this.Products.filter(
+    this.filteredProducts = this.data.filter(
       (element) =>
         element.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-        element.description
-          .toLowerCase()
-          .includes(this.searchTerm.toLowerCase())
+        element.category.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
     this.resetDisplayedProducts();
   }
+
   loadMoreProducts() {
     const nextIndex = this.currentIndex + this.pageSize;
     const nextProducts = this.filteredProducts.slice(
@@ -98,10 +98,12 @@ export class ShopHomeComponent implements OnInit {
     this.displayedProducts = this.displayedProducts.concat(nextProducts);
     this.currentIndex = nextIndex;
   }
+
   onSearch(searchTerm: string) {
     this.searchTerm = searchTerm;
     this.filterProducts();
   }
+
   resetDisplayedProducts() {
     this.displayedProducts = [];
     this.currentIndex = 0;

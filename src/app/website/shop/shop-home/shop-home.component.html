@@ -31,12 +31,15 @@
       </div>
 
       <ng-container *ngIf="!isLoading">
-        <ng-container *ngFor="let product of data; trackBy: trackById">
+        <ng-container
+          *ngFor="let product of displayedProducts; trackBy: trackById"
+        >
           <app-product-card
             [product]="product"
             (addToCart)="addToCart($event)"
           ></app-product-card>
         </ng-container>
       </ng-container>
-    </div> </mat-sidenav-content
-></mat-sidenav-container>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
