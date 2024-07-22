@@ -16,6 +16,11 @@
       <p>Total: {{ cartTotal | currency }}</p>
     </div>
     <button (click)="clearCart()">Clear Cart</button>
-    <button (click)="buyItems()">Check-out</button>
+    <button (click)="DoConfirmCheckout()">Check-out</button>
   </div>
+  <router-outlet></router-outlet>
+  <app-confirm-checkout
+    *ngIf="showModal"
+    (confirm)="onModalConfirm($event)"
+  ></app-confirm-checkout>
 </div>

@@ -46,6 +46,15 @@ export const ROUTES: Routes = [
               import('./website/shop/shop-cart/shop-cart.component').then(
                 (m) => m.CartComponent
               ),
+            children: [
+              {
+                path: 'check-out',
+                loadComponent: () =>
+                  import(
+                    './website/shop/shop-cart/check-out/check-out.component'
+                  ).then((m) => m.CheckOutComponent),
+              },
+            ],
           },
           {
             path: 'profile',
