@@ -1,17 +1,25 @@
 <div class="modal">
   <h2>Do you have a promotion code?</h2>
   <!-- <input [(ngModel)]="promotionCode" type="text" placeholder="Enter promotion code" /> -->
-  <h2>Do you want to login?</h2>
-  <button (click)="onConfirm(true, true)">
-    Yes, I have a code and I want to login
-  </button>
-  <button (click)="onConfirm(true, false)">
-    Yes, I have a code but I don't want to login
-  </button>
-  <button (click)="onConfirm(false, true)">
-    No, I don't have a code but I want to login
-  </button>
-  <button (click)="onConfirm(false, false)">
-    No, I don't have a code and I don't want to login
-  </button>
+  <div *ngIf="!isUserLoggedIn">
+    <h2>Do you want to login?</h2>
+    <button (click)="onConfirm(true, true)">
+      Yes, I have a code and I want to login
+    </button>
+    <button (click)="onConfirm(true, false)">
+      Yes, I have a code but I don't want to login
+    </button>
+    <button (click)="onConfirm(false, true)">
+      No, I don't have a code but I want to login
+    </button>
+    <button (click)="onConfirm(false, false)">
+      No, I don't have a code and I don't want to login
+    </button>
+  </div>
+  <div *ngIf="isUserLoggedIn">
+    <button (click)="onConfirm(true, false)">Submit Promotion Code</button>
+    <button (click)="onConfirm(false, false)">
+      Proceed without Promotion Code
+    </button>
+  </div>
 </div>

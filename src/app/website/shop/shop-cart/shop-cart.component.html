@@ -18,9 +18,10 @@
     <button (click)="clearCart()">Clear Cart</button>
     <button (click)="DoConfirmCheckout()">Check-out</button>
   </div>
-  <router-outlet></router-outlet>
+
   <app-confirm-checkout
     *ngIf="showModal"
+    [isUserLoggedIn]="isUserLoggedIn"
     (confirm)="onModalConfirm($event)"
   ></app-confirm-checkout>
 </div>

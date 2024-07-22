@@ -1,29 +1,36 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../../services/cart.service';
 import { CartItem } from '../../../models/cart-item.model';
 import { CommonModule, CurrencyPipe } from '@angular/common';
-import { Router, RouterModule } from '@angular/router';
-import { ConfirmCheckoutComponent } from './confirm-checkout/confirm-checkout.component';
+import { Router } from '@angular/router';
+import { ConfirmCheckoutCOmponent } from './confirm-checkout/confirm-checkout.component';
+import { AuthService } from '../../../services/firebase-related-services/auth.service';
 
 @Component({
   selector: 'app-shop-cart',
   standalone: true,
   templateUrl: './shop-cart.component.html',
   styleUrls: ['./shop-cart.component.scss'],
-  imports: [CurrencyPipe, CommonModule, ConfirmCheckoutComponent, RouterModule],
+  imports: [CurrencyPipe, CommonModule, ConfirmCheckoutCOmponent],
 })
 export class CartComponent implements OnInit {
   cartItems: CartItem[] = [];
   cartTotal = 0;
   showModal = false;
+  isUserLoggedIn = false;
 
-  constructor(private cartService: CartService, private router: Router) {}
+  constructor(
+    private cartService: CartService,
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
     this.cartService.cart$.subscribe((items) => {
       this.cartItems = items;
       this.cartTotal = this.cartService.getCartTotal();
     });
+    this.isUserLoggedIn = this.authService.isLoggedIn();
   }
 
   removeItem(productId: string) {
@@ -46,12 +53,12 @@ export class CartComponent implements OnInit {
     this.showModal = false;
     console.log('Promotion Code:', event.promotionCode);
     console.log('Wants to Login:', event.wantsToLogin);
-    if (event.wantsToLogin) {
+    if (event.wantsToLogin && !this.isUserLoggedIn) {
       // Redirect to login
       this.router.navigate(['/login']);
     } else {
       // Proceed to checkout
-      this.router.navigate(['/shop/cart/check-out']);
+      this.router.navigate(['/checkout']);
     }
   }
 }

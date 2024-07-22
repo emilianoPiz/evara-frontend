@@ -91,4 +91,8 @@ export class AuthService {
     const userSnapshot = await getDoc(userDoc);
     return userSnapshot.exists() ? (userSnapshot.data() as User) : undefined;
   }
+
+  isLoggedIn(): boolean {
+    return this.userSubject.value !== null;
+  }
 }
