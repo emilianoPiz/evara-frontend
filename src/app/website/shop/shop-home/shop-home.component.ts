@@ -16,6 +16,7 @@ import {
 import { MatNavList } from '@angular/material/list';
 import { EvaraSpinnerComponent } from '../../../templates/evara-spinner/evara-spinner.component';
 import { SearchBarComponent } from '../../../templates/search-bar/search-bar.component';
+import { PromotionBannerComponent } from '../promotion-banner/promotion-banner.component';
 
 @Component({
   selector: 'app-shop-home',
@@ -32,6 +33,7 @@ import { SearchBarComponent } from '../../../templates/search-bar/search-bar.com
     RouterModule,
     EvaraSpinnerComponent,
     SearchBarComponent,
+    PromotionBannerComponent,
   ],
   templateUrl: './shop-home.component.html',
   styleUrls: ['./shop-home.component.scss'],

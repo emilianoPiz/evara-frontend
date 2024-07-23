@@ -1,15 +1,14 @@
 import { Injectable, inject } from '@angular/core';
-import { Firestore, collectionData, docData } from '@angular/fire/firestore';
+import { Firestore, collectionData } from '@angular/fire/firestore';
 import {
   collection,
-  addDoc,
   deleteDoc,
   doc,
+  getDocs,
+  query,
   setDoc,
   updateDoc,
   where,
-  query,
-  getDocs,
 } from 'firebase/firestore';
 import { Observable, from, map } from 'rxjs';
 
@@ -72,5 +71,11 @@ export class FirebaseService {
         return documents;
       })
     );
+  }
+
+  // Method to get all promotions
+  getAllPromotions(): Observable<any[]> {
+    const collectionRef = collection(this.firestore, 'promotions');
+    return collectionData(collectionRef, { idField: 'id' });
   }
 }

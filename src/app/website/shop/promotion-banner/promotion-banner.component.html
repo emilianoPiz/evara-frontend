@@ -1,0 +1,17 @@
+<div class="promotion-banner">
+  <div class="promotion" *ngIf="promotions.length">
+    <h2>{{ promotions[currentPromotionIndex].promotion_name }}</h2>
+    <p>{{ promotions[currentPromotionIndex].description }}</p>
+    <p *ngIf="promotions[currentPromotionIndex].discount_percentage">
+      Discount: {{ promotions[currentPromotionIndex].discount_percentage }}%
+    </p>
+    <p *ngIf="promotions[currentPromotionIndex].discount_amount">
+      Discount Amount:
+      {{ promotions[currentPromotionIndex].discount_amount | currency }}
+    </p>
+    <p>Category: {{ promotions[currentPromotionIndex].category }}</p>
+    <p *ngIf="promotions[currentPromotionIndex].promo_code">
+      Promo Code: {{ promotions[currentPromotionIndex].promo_code }}
+    </p>
+  </div>
+</div>

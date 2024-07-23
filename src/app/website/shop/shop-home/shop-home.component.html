@@ -27,12 +27,12 @@
     <router-outlet></router-outlet>
 
     <!--THIS SHOULD BE A SEPARATE COMPONENT-->
+    <app-promotion-banner></app-promotion-banner>
 
     <div class="container-products">
       <div *ngIf="isLoading" class="center-spinner">
         <app-evara-spinner></app-evara-spinner>
       </div>
-
       <ng-container *ngIf="!isLoading">
         <ng-container
           *ngFor="let product of displayedProducts; trackBy: trackById"

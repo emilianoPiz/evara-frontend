@@ -19,4 +19,15 @@ export class PromotionService {
         )
       );
   }
+
+  getAllPromotions(): Observable<Promotion[]> {
+    return this.firebaseService.getAllPromotions().pipe(
+      map((promotions: any[]) =>
+        promotions.map((promotion) => ({
+          id: promotion.id,
+          ...promotion,
+        }))
+      )
+    );
+  }
 }
