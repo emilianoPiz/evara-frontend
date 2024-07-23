@@ -54,27 +54,19 @@ export class CartService {
   }
 
   // Apply promotions at checkout
-  applyPromotionsAtCheckout(promotions: Promotion[]) {
-    const cartItemsCopy = [...this.cartItems]; // Create a copy of cart items for applying promotions
+  applyPromotionCode(promotion: Promotion) {
+    const cartItemsCopy = [...this.cartItems];
     cartItemsCopy.forEach((item, index) => {
       let updatedItem = { ...item };
-      promotions.forEach((promotion) => {
-        if (promotion.combinable) {
-          updatedItem = this.discountService.applyPromotion(
-            updatedItem,
-            promotion
-          );
-        } else if (!updatedItem.promotion_name) {
-          updatedItem = this.discountService.applyPromotion(
-            updatedItem,
-            promotion
-          );
-        }
-      });
+      updatedItem = this.discountService.applyPromotion(updatedItem, promotion);
       cartItemsCopy[index] = updatedItem;
     });
 
     this.cartItems = cartItemsCopy;
     this.updateCart();
+  }
+
+  getCartItems() {
+    return this.cartItems;
   }
 }

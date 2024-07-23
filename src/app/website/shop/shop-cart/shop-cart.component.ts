@@ -3,26 +3,30 @@ import { CartService } from '../../../services/cart.service';
 import { CartItem } from '../../../models/cart-item.model';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { Router } from '@angular/router';
-import { ConfirmCheckoutCOmponent } from './confirm-checkout/confirm-checkout.component';
+import { ConfirmCheckoutComponent } from './confirm-checkout/confirm-checkout.component';
 import { AuthService } from '../../../services/firebase-related-services/auth.service';
+import { PromotionService } from '../../../services/promotion.service';
+import { Promotion } from '../../../models/promotion.model';
 
 @Component({
   selector: 'app-shop-cart',
   standalone: true,
   templateUrl: './shop-cart.component.html',
   styleUrls: ['./shop-cart.component.scss'],
-  imports: [CurrencyPipe, CommonModule, ConfirmCheckoutCOmponent],
+  imports: [CurrencyPipe, CommonModule, ConfirmCheckoutComponent],
 })
 export class CartComponent implements OnInit {
   cartItems: CartItem[] = [];
   cartTotal = 0;
   showModal = false;
   isUserLoggedIn = false;
+  errorMessage: string | null = null;
 
   constructor(
     private cartService: CartService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private promotionService: PromotionService
   ) {}
 
   ngOnInit() {
@@ -41,7 +45,7 @@ export class CartComponent implements OnInit {
     this.cartService.clearCart();
   }
 
-  DoConfirmCheckout() {
+  doConfirmCheckout() {
     this.showModal = true;
   }
 
@@ -57,8 +61,22 @@ export class CartComponent implements OnInit {
       // Redirect to login
       this.router.navigate(['/login']);
     } else {
-      // Proceed to checkout
-      this.router.navigate(['/checkout']);
+      if (event.hasPromotion) {
+        this.promotionService
+          .validatePromotionCode(event.promotionCode)
+          .subscribe((promotion) => {
+            if (promotion) {
+              this.cartService.applyPromotionCode(promotion);
+              // Proceed to checkout
+              this.router.navigate(['/shop/check-out']);
+            } else {
+              this.errorMessage = 'Invalid promotion code';
+            }
+          });
+      } else {
+        // Proceed to checkout
+        this.router.navigate(['/shop/check-out']);
+      }
     }
   }
 }

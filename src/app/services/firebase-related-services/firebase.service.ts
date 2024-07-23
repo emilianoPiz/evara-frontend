@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Firestore } from '@angular/fire/firestore';
+import { Firestore, collectionData, docData } from '@angular/fire/firestore';
 import {
   collection,
   addDoc,
@@ -7,7 +7,11 @@ import {
   doc,
   setDoc,
   updateDoc,
+  where,
+  query,
+  getDocs,
 } from 'firebase/firestore';
+import { Observable, from, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -51,20 +55,22 @@ export class FirebaseService {
     return updateDoc(userDoc, user);
   }
 
-  // Promotions Methods
-  insertPromotion(promotion: any) {
-    const promotionId = promotion.id;
-    const promotionDoc = doc(this.firestore, `promotions/${promotionId}`);
-    return setDoc(promotionDoc, promotion);
-  }
-
-  deletePromotion(promotionId: string) {
-    const promotionDoc = doc(this.firestore, `promotions/${promotionId}`);
-    return deleteDoc(promotionDoc);
-  }
-
-  updatePromotion(promotionId: string, promotion: any) {
-    const promotionDoc = doc(this.firestore, `promotions/${promotionId}`);
-    return updateDoc(promotionDoc, promotion);
+  // Generic method to get documents by query
+  getDocumentsByQuery(
+    collectionPath: string,
+    field: string,
+    value: any
+  ): Observable<any[]> {
+    const collectionRef = collection(this.firestore, collectionPath);
+    const q = query(collectionRef, where(field, '==', value));
+    return from(getDocs(q)).pipe(
+      map((querySnapshot) => {
+        const documents: any[] = [];
+        querySnapshot.forEach((doc) => {
+          documents.push({ id: doc.id, ...doc.data() });
+        });
+        return documents;
+      })
+    );
   }
 }

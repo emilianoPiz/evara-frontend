@@ -1,34 +1,22 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Promotion } from '../models/promotion.model';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { FirebaseService } from './firebase-related-services/firebase.service';
+import { Promotion } from '../models/promotion.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PromotionService {
-  private promotionsCollection =
-    this.firestore.collection<Promotion>('promotions');
+  constructor(private firebaseService: FirebaseService) {}
 
-  constructor(private firestore: AngularFirestore) {}
-
-  createPromotion(promotion: Promotion): Promise<void> {
-    const id = this.firestore.createId();
-    return this.promotionsCollection.doc(id).set({ ...promotion, id });
-  }
-
-  getPromotion(promotionId: string): Observable<Promotion | undefined> {
-    return this.promotionsCollection.doc<Promotion>(promotionId).valueChanges();
-  }
-
-  updatePromotion(
-    promotionId: string,
-    promotion: Partial<Promotion>
-  ): Promise<void> {
-    return this.promotionsCollection.doc(promotionId).update(promotion);
-  }
-
-  deletePromotion(promotionId: string): Promise<void> {
-    return this.promotionsCollection.doc(promotionId).delete();
+  validatePromotionCode(promoCode: string): Observable<Promotion | null> {
+    return this.firebaseService
+      .getDocumentsByQuery('promotions', 'promo_code', promoCode)
+      .pipe(
+        map((promotions: Promotion[]) =>
+          promotions.length ? promotions[0] : null
+        )
+      );
   }
 }

@@ -1,1 +1,18 @@
-<p>check-out works!</p>
+<div class="checkout-container">
+  <h2>Checkout</h2>
+  <div *ngIf="cartItems.length > 0; else emptyCart">
+    <div class="cart-item" *ngFor="let item of cartItems">
+      <div>{{ item.product_name }}</div>
+      <div>{{ item.quantity }}</div>
+      <div>{{ item.price | currency }}</div>
+      <div>{{ item.total | currency }}</div>
+    </div>
+    <div class="cart-total">
+      <strong>Total: {{ cartTotal | currency }}</strong>
+    </div>
+    <button (click)="confirmPurchase()">Confirm Purchase</button>
+  </div>
+  <ng-template #emptyCart>
+    <p>Your cart is empty.</p>
+  </ng-template>
+</div>
