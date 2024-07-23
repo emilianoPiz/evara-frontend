@@ -1,10 +1,14 @@
-<div class="sign-up-container">
+<div class="sign-up-container" @cardAnimation>
   <mat-card class="sign-up-card">
     <mat-card-header>
       <mat-card-title>Sign Up</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <form (ngSubmit)="signUp($event)">
+        <mat-form-field appearance="outline">
+          <mat-label>Name</mat-label>
+          <input matInput type="text" [(ngModel)]="name" name="name" required />
+        </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Email</mat-label>
           <input
@@ -25,8 +29,29 @@
             required
           />
         </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Phone Number</mat-label>
+          <input
+            matInput
+            type="text"
+            [(ngModel)]="phoneNumber"
+            name="phoneNumber"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Address</mat-label>
+          <input
+            matInput
+            type="text"
+            [(ngModel)]="address"
+            name="address"
+            required
+          />
+        </mat-form-field>
         <button mat-raised-button color="primary" type="submit">Sign Up</button>
       </form>
+      <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
     </mat-card-content>
   </mat-card>
 </div>

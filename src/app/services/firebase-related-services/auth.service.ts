@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
   User,
   createUserWithEmailAndPassword,
@@ -37,7 +37,14 @@ export class AuthService {
     });
   }
 
-  async signUp(registerEmail: string, registerPassword: string, role: string) {
+  async signUp(
+    registerEmail: string,
+    registerPassword: string,
+    role: string,
+    name: string,
+    phoneNumber: string,
+    address: string
+  ) {
     try {
       const userCredential = await createUserWithEmailAndPassword(
         this.auth,
@@ -47,9 +54,11 @@ export class AuthService {
       const user = userCredential.user;
       const userData = {
         id: user.uid,
-        name: user.email || '',
+        name: name,
         email: user.email || '',
         role: role,
+        phone_number: phoneNumber,
+        address: address,
         created_at: Timestamp.fromDate(new Date()),
         updated_at: Timestamp.fromDate(new Date()),
       };
