@@ -62,6 +62,7 @@ export class NavbarComponent implements OnInit {
         { path: '/admin', label: 'Dashboard' },
         { path: '/admin/promotions', label: 'Promotions' },
         { path: '/admin/orders', label: 'Orders' },
+        { path: '/admin/contact', label: 'Contact Requests' },
         { path: '/admin/panel', label: 'Main Panel' },
         { path: '/admin/panel/promotions', label: 'Manage promotions' },
         { path: '/admin/panel/products', label: 'Manage products' },

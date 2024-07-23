@@ -1,0 +1,162 @@
+<!-- contact-us.component.html -->
+<div class="contact-us-container">
+  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="name">Name</label>
+      <input id="name" formControlName="name" type="text" />
+      <div
+        *ngIf="
+          contactForm.get('name')?.invalid && contactForm.get('name')?.touched
+        "
+      >
+        Name is required.
+      </div>
+    </div>
+
+    <div>
+      <label for="email">Email</label>
+      <input id="email" formControlName="email" type="email" />
+      <div
+        *ngIf="
+          contactForm.get('email')?.invalid && contactForm.get('email')?.touched
+        "
+      >
+        Valid email is required.
+      </div>
+    </div>
+
+    <div>
+      <label for="phone">Phone</label>
+      <input id="phone" formControlName="phone" type="text" />
+      <div
+        *ngIf="
+          contactForm.get('phone')?.invalid && contactForm.get('phone')?.touched
+        "
+      >
+        Valid phone number is required.
+      </div>
+    </div>
+
+    <div>
+      <label for="subject">Subject</label>
+      <input id="subject" formControlName="subject" type="text" />
+      <div
+        *ngIf="
+          contactForm.get('subject')?.invalid &&
+          contactForm.get('subject')?.touched
+        "
+      >
+        Subject is required.
+      </div>
+    </div>
+
+    <div>
+      <label for="message">Message</label>
+      <textarea id="message" formControlName="message"></textarea>
+      <div
+        *ngIf="
+          contactForm.get('message')?.invalid &&
+          contactForm.get('message')?.touched
+        "
+      >
+        Message is required.
+      </div>
+    </div>
+
+    <div formGroupName="address">
+      <label>Address</label>
+      <div>
+        <label for="street">Street</label>
+        <input id="street" formControlName="street" type="text" />
+        <div
+          *ngIf="
+            contactForm.get('address.street')?.invalid &&
+            contactForm.get('address.street')?.touched
+          "
+        >
+          Street is required.
+        </div>
+      </div>
+      <div>
+        <label for="city">City</label>
+        <input id="city" formControlName="city" type="text" />
+        <div
+          *ngIf="
+            contactForm.get('address.city')?.invalid &&
+            contactForm.get('address.city')?.touched
+          "
+        >
+          City is required.
+        </div>
+      </div>
+      <div>
+        <label for="state">State</label>
+        <input id="state" formControlName="state" type="text" />
+        <div
+          *ngIf="
+            contactForm.get('address.state')?.invalid &&
+            contactForm.get('address.state')?.touched
+          "
+        >
+          State is required.
+        </div>
+      </div>
+      <div>
+        <label for="postalCode">Postal Code</label>
+        <input id="postalCode" formControlName="postalCode" type="text" />
+        <div
+          *ngIf="
+            contactForm.get('address.postalCode')?.invalid &&
+            contactForm.get('address.postalCode')?.touched
+          "
+        >
+          Postal Code is required.
+        </div>
+      </div>
+      <div>
+        <label for="country">Country</label>
+        <input id="country" formControlName="country" type="text" />
+        <div
+          *ngIf="
+            contactForm.get('address.country')?.invalid &&
+            contactForm.get('address.country')?.touched
+          "
+        >
+          Country is required.
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <label for="gender">Gender</label>
+      <select id="gender" formControlName="gender">
+        <option value="">Select Gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+      <div
+        *ngIf="
+          contactForm.get('gender')?.invalid &&
+          contactForm.get('gender')?.touched
+        "
+      >
+        Gender is required.
+      </div>
+    </div>
+
+    <div>
+      <label for="age">Age</label>
+      <input id="age" formControlName="age" type="number" />
+      <div
+        *ngIf="
+          contactForm.get('age')?.invalid && contactForm.get('age')?.touched
+        "
+      >
+        Valid age is required.
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="contactForm.invalid">Submit</button>
+  </form>
+</div>

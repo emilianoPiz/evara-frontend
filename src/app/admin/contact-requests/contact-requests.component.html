@@ -1,0 +1,22 @@
+<!-- contact-requests.component.html -->
+<div class="contact-requests-container">
+  <h2>Contact Requests</h2>
+  <ul>
+    <li *ngFor="let request of contactRequests$ | async">
+      <h3>{{ request.name }}</h3>
+      <p><strong>Email:</strong> {{ request.email }}</p>
+      <p><strong>Phone:</strong> {{ request.phone }}</p>
+      <p><strong>Subject:</strong> {{ request.subject }}</p>
+      <p><strong>Message:</strong> {{ request.message }}</p>
+      <p>
+        <strong>Address:</strong> {{ request.address.street }},
+        {{ request.address.city }}, {{ request.address.state }},
+        {{ request.address.postalCode }}, {{ request.address.country }}
+      </p>
+      <p><strong>Gender:</strong> {{ request.gender }}</p>
+      <p><strong>Age:</strong> {{ request.age }}</p>
+    </li>
+  </ul>
+  <button>SEND-EMAIL</button>
+  <button>DELETE REQUEST</button>
+</div>

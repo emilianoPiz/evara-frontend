@@ -22,6 +22,13 @@ export const ROUTES: Routes = [
       import('./templates/login/login.component').then((m) => m.LoginComponent),
   },
   {
+    path: 'contact',
+    loadComponent: () =>
+      import('./website/commons/contact-us/contact-us.component').then(
+        (m) => m.ContactUsComponent
+      ),
+  },
+  {
     path: 'shop',
     loadComponent: () =>
       import('./website/shop/shop.component').then((m) => m.ShopComponent),
@@ -102,6 +109,14 @@ export const ROUTES: Routes = [
         loadComponent: () =>
           import('./admin/promotion-list/promotion-list.component').then(
             (m) => m.PromotionListComponent
+          ),
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'contact',
+        loadComponent: () =>
+          import('./admin/contact-requests/contact-requests.component').then(
+            (m) => m.ContactRequestsComponent
           ),
         canActivate: [AuthGuard],
       },
