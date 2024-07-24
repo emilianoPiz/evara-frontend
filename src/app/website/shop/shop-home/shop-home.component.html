@@ -13,21 +13,18 @@
         </a>
       </ng-container>
     </mat-nav-list>
-    <app-search-bar
-      ParentComponent="Products"
-      (searchEvent)="onSearch($event)"
-    ></app-search-bar>
   </mat-sidenav>
   <mat-sidenav-content>
     <app-navbar #navbarComponent (menuToggle)="sidenav.toggle()"></app-navbar>
-    <app-search-bar
-      ParentComponent="Products"
-      (searchEvent)="onSearch($event)"
-    ></app-search-bar>
+    >
     <router-outlet></router-outlet>
 
     <app-promotion-banner></app-promotion-banner>
     <!--THIS SHOULD BE A SEPARATE COMPONENT-->
+    <app-search-bar
+      ParentComponent="Products"
+      (searchEvent)="onSearch($event)"
+    ></app-search-bar>
     <h1>ALL PRODUCTS</h1>
     <div class="container-products">
       <div *ngIf="isLoading" class="center-spinner">
