@@ -23,12 +23,12 @@ export class DiscountService {
     }
 
     // Apply fixed discount if applicable
-    if (promotion.discount_amount) {
-      console.log(
-        `Applying fixed discount amount: ${promotion.discount_amount}`
-      );
-      cartItem.price -= promotion.discount_amount;
-    }
+    // if (promotion.discount_amount) {
+    //   console.log(
+    //     `Applying fixed discount amount: ${promotion.discount_amount}`
+    //   );
+    //   cartItem.price -= promotion.discount_amount;
+    // }
 
     // Ensure the total is not negative
     if (cartItem.total < 0) {
